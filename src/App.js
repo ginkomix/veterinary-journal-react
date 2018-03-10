@@ -8,21 +8,21 @@ import "./App.css";
 import 'semantic-ui-css/semantic.min.css';
 import {Provider} from 'react-redux';
 import store from './config/store';
+import Start from './components/Start';
+
 
 class App extends React.Component {
 
 	render() {
 		return (
 			<Provider store={store}>
-				<div>
-					<h2>Add task</h2>
-					<ToDoForm />
-					<h2>Filter</h2>
-					<Filter/>
-					<h2>ToDo</h2>
-					<Table/>
-					<ContextMenu/>
-				</div>
+			<div>
+               <Start/>
+			</div>
+			
+
+				
+
 			</Provider>
 		);
 	}

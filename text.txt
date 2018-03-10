@@ -1,0 +1,9 @@
+<div>
+					<h2>Add task</h2>
+					<ToDoForm />
+					<h2>Filter</h2>
+					<Filter/>
+					<h2>ToDo</h2>
+					<Table/>
+					<ContextMenu/>
+				</div>
