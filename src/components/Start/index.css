@@ -76,6 +76,7 @@
     width: 100%;
     display: flex;
     flex-wrap:wrap;
+	padding: 0 30px;
 }
 .iconBlock {
     background: #6256a9;
