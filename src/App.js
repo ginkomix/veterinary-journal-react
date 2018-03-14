@@ -29,6 +29,7 @@ class App extends React.Component {
 		return (
 			<Provider store={store}>
 			<div>
+            
                <Start/>
 			</div>
 			
