@@ -1,1 +1,6 @@
-
+.error {
+	border-left: 3px solid #B8000F!important;
+}
+.success {
+	border-left: 3px solid #3B8F00!important;
+}

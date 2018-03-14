@@ -9,7 +9,7 @@ import 'semantic-ui-css/semantic.min.css';
 import {Provider} from 'react-redux';
 import store from './config/store';
 import Start from './components/Start';
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 
  var config = {
     apiKey: "AIzaSyBJqf0gLujy-LORi1oFG41JE040bx1F0RE",
