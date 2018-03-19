@@ -1,10 +1,10 @@
-import Ract from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
-import Table from "./components/Table";
-import ToDoForm from "./components/ToDoForm";
-import Filter from "./components/Filter";
-import {api} from "./utils/api";
-import ContextMenu from "./components/ContextMenu";
+import Table from "../Table";
+import ToDoForm from "../ToDoForm";
+import Filter from "../Filter";
+import {api} from "../../utils/api";
+import ContextMenu from "../ContextMenu";
 
 class Main extends React.Component {
 	render() {	

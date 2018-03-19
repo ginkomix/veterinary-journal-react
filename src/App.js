@@ -4,7 +4,9 @@ import 'semantic-ui-css/semantic.min.css';
 import {Provider} from 'react-redux';
 import store from './config/store';
 import Start from './components/Start';
+import Main from './components/Main';
 import firebase from 'firebase';
+import { Switch, Route } from 'react-router-dom'
 
  var config = {
     apiKey: "AIzaSyBJqf0gLujy-LORi1oFG41JE040bx1F0RE",
@@ -23,9 +25,10 @@ class App extends React.Component {
 	render() {
 		return (
 			<Provider store={store}>
-                <div>
-                   <Start/>
-                </div>			
+                  <Switch>
+                    <Route exact path='/' component={Start}/>
+                    <Route path='/journal' component={Main}/>
+                </Switch>    			
 			</Provider>
 		);
 	}
