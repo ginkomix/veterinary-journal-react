@@ -1,23 +1,33 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import './index.css';
+import {user} from '../../actions/user';
 
 class Authorization extends React.Component {
 
-	verification() {
-		let loginIn = document.querySelector('#loginIn'),
-			passwordIn = document.querySelector('#passwordIn');
-		if(loginIn.value.length===0 || loginIn.value.length>10) {		
-			loginIn.className ='error';
+	verification =()=> {
+		let login = document.querySelector('#loginIn'),
+			password = document.querySelector('#passwordIn');
+		if(login.value.length===0 || login.value.length>30) {		
+			login.className ='error';
+			return;
 		} else {
-			loginIn.className ='success';
+			login.className ='success';
 		}
-		if(passwordIn.value.length===0 || passwordIn.value.length>15) {		
-			passwordIn.className ='error';
+		if(password.value.length===0 || password.value.length>30|| password.value.length>8) {		
+			password.className ='error';
+			return;
 		} else {
-			passwordIn.className ='success';
+			password.className ='success';
 		}
-		
+		this.sigIn(login,password);
+	}
+	
+	sigIn = (login,password) =>{
+		let user = null;
+		login.className = 'error';
+		password.className = 'error';
+		this.props.user(user);
 	}
 
 	render () {
@@ -31,4 +41,4 @@ class Authorization extends React.Component {
 	}
 }
 
-export default connect(undefined,{})(Authorization);
+export default connect(undefined,{user})(Authorization);
