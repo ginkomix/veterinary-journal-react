@@ -4,7 +4,7 @@ import 'semantic-ui-css/semantic.min.css';
 import {Provider} from 'react-redux';
 import store from './config/store';
 import Start from './components/Start';
-import Main from './components/Main';
+import Authenticatin from './components/Authenticatin';
 import firebase from 'firebase';
 import { Switch, Route } from 'react-router-dom'
 
@@ -27,7 +27,7 @@ class App extends React.Component {
 			<Provider store={store}>
                   <Switch>
                     <Route exact path='/' component={Start}/>
-                    <Route path='/journal' component={Main}/>
+                    <Route path='/journal' component={Authenticatin}/>
                 </Switch>    			
 			</Provider>
 		);
