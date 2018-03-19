@@ -44,6 +44,12 @@
 .logo span {
 	color: #6256a9;
 }
+.header i {
+	transition: 0.3s;
+}
+.header i:hover{
+	color: #6256a9;
+}
 .list {
 	display: flex;
 	justify-content: flex-start;
@@ -91,6 +97,9 @@
 	justify-content: center;
 	margin-right: 10px;
 }
+.iconBlock i {
+	margin: 0!important;
+}
 .buttonAutoriz {
 	color: white;
 	font-size: 2.113rem;
@@ -131,6 +140,7 @@
 	border: 0;
 	margin: 5px;
 	line-height: inherit;
+	cursor: pointer;
 }
 @media screen and (max-width:768px) {
 	.row { 

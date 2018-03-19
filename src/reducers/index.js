@@ -6,11 +6,13 @@ import contextMenu from './contextMenu';
 import startForm from './startForm';
 import { routeReducer } from 'react-router-redux';
 
+import user from './user';
 export default combineReducers({
     routing:routeReducer,
 	item,
 	sort,
 	filter,
 	contextMenu,
-    startForm
+    startForm,
+	user
 });
