@@ -116,3 +116,6 @@
 .footer p {
      color: #898989;
 }
+.fimale, .name {
+     text-transform: uppercase;
+}
