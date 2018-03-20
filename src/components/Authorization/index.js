@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import './index.css';
-import {user} from '../../actions/user';
+import {userAdd} from '../../actions/user';
 import { withRouter } from 'react-router-dom';
 import firebase from 'firebase';
 
@@ -17,7 +17,6 @@ class Authorization extends React.Component {
 			login.className ='success';
 		}
 		if(password.value.length===0 || password.value.length>30|| password.value.length<8) {	
-			console.log(password.value.length);
 			password.className ='error';
 			return;
 		} else {
@@ -29,11 +28,10 @@ class Authorization extends React.Component {
 	sigIn = (login,password) =>{
 		
 		let user = null;
-		console.log(login.value, password.value)
 		firebase.auth().signInWithEmailAndPassword(login.value, password.value)
 			.then((user)=>{
 			
-			this.props.user(user);
+			this.props.userAdd(user);
 			this.props.history.push("/journal");
 		})
 			.catch(()=> {
@@ -54,4 +52,4 @@ class Authorization extends React.Component {
 	}
 }
 
-export default  withRouter(connect(undefined,{user})(Authorization));
+export default  withRouter(connect(undefined,{userAdd})(Authorization));

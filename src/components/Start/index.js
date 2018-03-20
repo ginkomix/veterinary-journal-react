@@ -4,9 +4,21 @@ import Authorization from '../Authorization';
 import Registration from '../Registration';
 import { Icon } from 'semantic-ui-react'
 import {choice} from '../../actions/startForm';
+import {userAdd} from '../../actions/user';
+import firebase from 'firebase';
 import './index.css';
 
 class Start extends React.Component {
+    
+     componentWillMount() {
+        firebase.auth().onAuthStateChanged((user)=> {
+            if (user) {
+                this.props.userAdd(user);
+                 this.props.history.push("/journal"); 
+            } 
+        });
+
+    }
 
 	renderForm = ()=>{
 		switch(this.props.button) {
@@ -80,5 +92,6 @@ class Start extends React.Component {
 export default connect(state=>({
 	button:state.startForm
 }),{
-	choice
+	choice,
+    userAdd
 })(Start);

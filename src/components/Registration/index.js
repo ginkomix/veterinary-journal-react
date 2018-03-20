@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import './index.css';
 import firebase from 'firebase';
-import {user} from '../../actions/user';
+import {userAdd} from '../../actions/user';
 import { withRouter } from 'react-router-dom';
 
 class Registration extends React.Component {
@@ -19,7 +19,7 @@ class Registration extends React.Component {
 				displayName: inf
 			})
 				.then(()=>{
-				this.props.user(user);
+				this.props.userAdd(user);
 				this.props.history.push("/journal");
 			})
 		})
@@ -94,4 +94,4 @@ class Registration extends React.Component {
 	}
 }
 
-export default  withRouter(connect(undefined,{user})(Registration));
+export default  withRouter(connect(undefined,{userAdd})(Registration));

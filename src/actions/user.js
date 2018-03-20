@@ -1,6 +1,6 @@
 export const USER = 'user';
 
-export const user = (user)=>({
+export const userAdd = (user)=>({
 	type:USER,
 	payload:user
 });
