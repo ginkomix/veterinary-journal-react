@@ -2,6 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import './index.css';
 import {user} from '../../actions/user';
+import { withRouter } from 'react-router-dom';
+import firebase from 'firebase';
 
 class Authorization extends React.Component {
 
@@ -14,7 +16,8 @@ class Authorization extends React.Component {
 		} else {
 			login.className ='success';
 		}
-		if(password.value.length===0 || password.value.length>30|| password.value.length>8) {		
+		if(password.value.length===0 || password.value.length>30|| password.value.length<8) {	
+			console.log(password.value.length);
 			password.className ='error';
 			return;
 		} else {
@@ -22,23 +25,33 @@ class Authorization extends React.Component {
 		}
 		this.sigIn(login,password);
 	}
-	
+
 	sigIn = (login,password) =>{
+		
 		let user = null;
-		login.className = 'error';
-		password.className = 'error';
-		this.props.user(user);
+		console.log(login.value, password.value)
+		firebase.auth().signInWithEmailAndPassword(login.value, password.value)
+			.then((user)=>{
+			
+			this.props.user(user);
+			this.props.history.push("/journal");
+		})
+			.catch(()=> {
+			login.className = 'error';
+			password.className = 'error';
+		});
+
 	}
 
 	render () {
 		return (
 			<div>
-				<input id='loginIn' placeholder='Логин' /><br/>
-				<input type='password' id='passwordIn' placeholder='Пароль' /><br/><br/>
-				<button onClick={this.verification} color='teal'>Вход</button>
+			<input id='loginIn' placeholder='Логин' /><br/>
+			<input type='password' id='passwordIn' placeholder='Пароль' /><br/><br/>
+			<button onClick={this.verification} color='teal'>Вход</button>
 			</div>
 		)
 	}
 }
 
-export default connect(undefined,{user})(Authorization);
+export default  withRouter(connect(undefined,{user})(Authorization));

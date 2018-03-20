@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import './index.css';
 import firebase from 'firebase';
 import {user} from '../../actions/user';
+import { withRouter } from 'react-router-dom';
 
 class Registration extends React.Component {
 
@@ -19,6 +20,7 @@ class Registration extends React.Component {
 			})
 				.then(()=>{
 				this.props.user(user);
+				this.props.history.push("/journal");
 			})
 		})
 			.catch((error)=> {
@@ -92,4 +94,4 @@ class Registration extends React.Component {
 	}
 }
 
-export default connect(undefined,{user})(Registration);
+export default  withRouter(connect(undefined,{user})(Registration));
