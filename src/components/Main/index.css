@@ -29,7 +29,7 @@
     background: linear-gradient(0deg, rgba(24,25,28,1) 0%, rgba(32,34,38,1) 65%, rgba(32,34,38,1) 100%);
     box-shadow: 0px 8px 12px 0px rgba(0, 0, 0, 0.5);
     width: 100%;
-    min-height: 95.5vh;
+    min-height: 94vh;
 }
 .user-profile {
     padding: 35px 0px;

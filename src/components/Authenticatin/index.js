@@ -11,10 +11,11 @@ class Authenticatin extends React.Component {
     componentWillMount() {
         if(!this.props.user) {
             firebase.auth().onAuthStateChanged((user)=> {
-                if (user) { 
+                if (user) {
+					
                    this.props.userAdd(user);
                 } else {
-                   this.props.history.push("/") 
+                   this.props.history.push("/");
                 }
             });
         }
@@ -23,7 +24,7 @@ class Authenticatin extends React.Component {
     render() {
         return (
             <div>
-             <Main/> 
+			{this.props.user ? <Main/> : null}
             </div>
         )
 

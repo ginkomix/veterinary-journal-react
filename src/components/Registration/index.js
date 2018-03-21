@@ -4,23 +4,28 @@ import './index.css';
 import firebase from 'firebase';
 import {userAdd} from '../../actions/user';
 import { withRouter } from 'react-router-dom';
+import {choice} from '../../actions/startForm';
 
 class Registration extends React.Component {
 
 	regestration = (login,password,inf)=> {
+	
 		var user = null;
 		firebase.auth().createUserWithEmailAndPassword(login.value, password.value)
 			.then( ()=> {
 			user = firebase.auth().currentUser;
+			
 			user.sendEmailVerification();
+			return user;
 		})
-			.then(()=> {
+			.then((user)=> {
 			user.updateProfile({
 				displayName: JSON.stringify(inf)
 			})
-				.then(()=>{
+				.then(()=>{				
 				this.props.userAdd(user);
 				this.props.history.push("/journal");
+				
 			})
 		})
 			.catch((error)=> {
@@ -94,4 +99,4 @@ class Registration extends React.Component {
 	}
 }
 
-export default  withRouter(connect(undefined,{userAdd})(Registration));
+export default  withRouter(connect(undefined,{userAdd,choice})(Registration));
