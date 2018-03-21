@@ -37,8 +37,7 @@ class Main extends React.Component {
 		firebase.auth().signOut()
 		.then(()=>{
 			 this.props.history.push("/");
-		})
-		
+		})	
 	}
 
 	render() {	
@@ -67,7 +66,8 @@ class Main extends React.Component {
 				</div>
 				<div className='journal'>
 					<div className="journal-box">
-
+						<Filter/>
+						<Table/>
 					</div>
 				</div>
 			</div>

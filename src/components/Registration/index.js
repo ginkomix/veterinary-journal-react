@@ -20,7 +20,7 @@ class Registration extends React.Component {
 		})
 			.then((user)=> {
 			user.updateProfile({
-				 JSON.stringify(inf)
+				displayName: JSON.stringify(inf)
 			})
 				.then(()=>{				
 				this.props.userAdd(user);
