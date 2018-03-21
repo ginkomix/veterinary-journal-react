@@ -20,7 +20,7 @@ class Registration extends React.Component {
 		})
 			.then((user)=> {
 			user.updateProfile({
-				displayName: JSON.stringify(inf)
+				 JSON.stringify(inf)
 			})
 				.then(()=>{				
 				this.props.userAdd(user);
@@ -45,19 +45,19 @@ class Registration extends React.Component {
 				surname:surname.value,
 				patronymic:patronymic.value				
 			}
-		if(name.value.length===0 || name.value.length>30) {		
+		if(name.value.length===0 || name.value.length>10) {		
 			name.className ='error';
 			return;
 		} else {
 			name.className ='success';
 		}
-		if(surname.value.length===0 || surname.value.length>30) {		
+		if(surname.value.length===0 || surname.value.length>10) {		
 			surname.className ='error';
 			return;
 		} else {
 			surname.className ='success';
 		}
-		if(patronymic.value.length===0 || patronymic.value.length>30) {		
+		if(patronymic.value.length===0 || patronymic.value.length>10) {		
 			patronymic.className ='error';
 			return;
 		} else {
