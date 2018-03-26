@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import 'semantic-ui-css/semantic.min.css';
 import {Provider} from 'react-redux';
 import store from './config/store';
@@ -27,10 +26,10 @@ class App extends React.Component {
     render() {
         return (
             <Provider store={store}>
-            <Switch>
-            <Route exact path='/' component={Start}/>
-            <Route path='/journal' component={Authenticatin}/>
-            </Switch>    			
+				<Switch>
+					<Route exact path='/' component={Start}/>
+					<Route path='/journal' component={Authenticatin}/>
+				</Switch>    			
             </Provider>
         );
     }

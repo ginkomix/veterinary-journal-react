@@ -17,9 +17,12 @@
 	font-size: 14px;
 	color: #ebebeb;
 	height: 52px;
-	border-bottom: 1px solid #7f7f7f;
+	border-bottom: 1px solid rgba(127, 127, 127,0.4);
+	border-left: 3px solid #1C1E21;
 }
-
+.active {
+	border-left: 3px solid #6256a9;
+}
 .inf1 {
 	width:4%;
 	padding-left: 20px;

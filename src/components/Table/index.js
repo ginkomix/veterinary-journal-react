@@ -48,8 +48,13 @@ class Table extends React.Component {
 		if(ev.target.tagName==='INPUT') {
 			return;
 		}
-		let id = Number(ev.target.getAttribute('class'));
+		let id = Number(ev.target.classList[0]);
 		this.props.changeItemID(id);
+		let item = document.querySelector('.active');
+		if(item) {
+			item.classList.remove('active');
+		}
+		document.querySelector('.'+id).classList.add('active');
 	}
 
 	renderPriority(priority) {
@@ -96,12 +101,12 @@ class Table extends React.Component {
 				<div className='main-table'>
 					{ sort.sortBy(this.getFilterItems(),this.props.sort).map((item)=> {
 						return (
-							<div onClick={this.returnIdItem}  className={`block-table  ${item.id}`} key = {item.id}>
-								<div className={`inf1 ${item.id}`}><input className = {item.id} type="checkbox" checked ={item.done} onChange={this.changeDone} /></div>
-								<div className={`inf2 ${item.id}`}>{item.title}</div>
-								<div className={`inf3 ${item.id}`}>{item.description}</div>
-								<div className={`inf4 ${item.id}`}>{this.renderPriority(item.priority)}</div>
-								<div className={`inf5 ${item.id}`}>{item.date.toString()}</div>
+							<div onClick={this.returnIdItem}  className={`${item.id} block-table `} key = {item.id}>
+								<div className={`${item.id} inf1 `}><input className = {item.id} type="checkbox" checked ={item.done} onChange={this.changeDone} /></div>
+								<div className={`${item.id} inf2 `}>{item.title}</div>
+								<div className={`${item.id} inf3 `}>{item.description}</div>
+								<div className={`${item.id} inf4 `}>{this.renderPriority(item.priority)}</div>
+								<div className={`${item.id} inf5 `}>{item.date.toString()}</div>
 							</div>
 						)})}
 				</div>
@@ -134,6 +139,7 @@ class Table extends React.Component {
 export default connect(state=>({
 	list: state.item,
 	sort: state.sort,
+	id: state.contextMenu,
 	filter: state.filter
 }),{
 	defaultItem,
