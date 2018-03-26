@@ -7,9 +7,11 @@ import {sortBy} from '../../actions/sort';
 import {changeItemID} from'../../actions/contextMenu';
 import {api} from '../../utils/api';
 import { Loader, Image, Segment } from 'semantic-ui-react';
+import './index.css';
+
 class Table extends React.Component {
 
-	title = ["done", "title", "priority", "date"];
+	title = ["ВЫПОЛНЕНИЕ", "ЗАГОЛОВОК", "ПРИОРИТЕТ", "ДАТА"];
 
 	componentWillMount() {
 		api.getItems()
@@ -21,18 +23,18 @@ class Table extends React.Component {
 
 	renderTitel() {
 		return(
-			<tbody>
-				<tr>
+			<div className='title'>
+				
 					{this.title.map((name,index)=>{
 						return (
-							<td key={index}>
+							<div className='title-block' key={index}>
 								{name} 
 								<Icon onClick={()=>this.props.sortBy(name)} name='caret up'/>
 								<Icon  onClick={()=>this.props.sortBy('-'+name)} name='caret down'/>
-							</td>
+							</div>
 						)})}
-				</tr>		
-			</tbody>
+					
+			</div>
 		)
 	}
 
@@ -89,16 +91,18 @@ class Table extends React.Component {
 
 	renderTable() {
 		return(
-			<tbody>
-				{ sort.sortBy(this.getFilterItems(),this.props.sort).map((item)=> {
-					return (<tr onClick={this.returnIdItem} className={item.id} key = {item.id}>
-							<td className={item.id}><input className = {item.id} type="checkbox" checked ={item.done} onChange={this.changeDone} /></td>
-							<td className={item.id}>{item.title}</td>
-							<td className={item.id}>{this.renderPriority(item.priority)}</td>
-							<td className={item.id}>{item.date.toString()}</td>
-						</tr>
-					)})}
-			</tbody>
+		
+				<tbody>
+					{ sort.sortBy(this.getFilterItems(),this.props.sort).map((item)=> {
+						return (<tr onClick={this.returnIdItem} className={item.id} key = {item.id}>
+								<td className={item.id}><input className = {item.id} type="checkbox" checked ={item.done} onChange={this.changeDone} /></td>
+								<td className={item.id}>{item.title}</td>
+								<td className={item.id}>{this.renderPriority(item.priority)}</td>
+								<td className={item.id}>{item.date.toString()}</td>
+							</tr>
+						)})}
+				</tbody>
+			
 		)
 	}
 
@@ -119,10 +123,13 @@ class Table extends React.Component {
 
 	render() {
 		return(
-			<table>
-				{this.renderTitel()}
-				{this.props.list?this.renderTable():this.renderLoad()}
-			</table>
+			<div>
+			{this.renderTitel()}
+				<table className='table'>
+					
+					{this.props.list?this.renderTable():this.renderLoad()}
+				</table>
+			</div>
 		);
 	}
 }

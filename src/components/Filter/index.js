@@ -37,17 +37,18 @@ render() {
 	return(
 		<div className='filter'>	
 			<form onChange={this.changeForm}>
-				
-				
 				<input id="searchText" placeholder='ПОИСК'  type="text"/>
 				<p>ДАТА ОТ</p>
 				<input id="searchDataMin" id="dataMin" type="date" />
 				<p>ДО</p>
 				<input id="searchDataMax" id="dataMax" type="date" />
-				<label class="container">
-					<input type="checkbox" checked={this.props.filter.check}/>
-					<span class="checkmark"></span>
-				</label>
+		
+				  <div class="side">
+					  <input type="checkbox" class="checkbox" id="checkbox" checked={this.props.filter.check} />
+					  <label for="checkbox" class="ios-switch"></label>
+				  </div>  
+		
+				
 				<p>ПОКАЗАТЬ ВЫПОЛНЕННЫЕ</p>
 			</form>	
 		</div>

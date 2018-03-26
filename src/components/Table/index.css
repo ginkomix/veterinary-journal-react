@@ -1,0 +1,13 @@
+.title {
+	width: 100%;
+	display: flex;
+background-color: #574c9d;
+align-items: center;
+	font-size: 14px;
+	color: #ebebeb;
+	height: 38px;
+}
+.title-block {
+	width: 25%;
+	padding-left: 20px;
+}
