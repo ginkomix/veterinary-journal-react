@@ -43,9 +43,9 @@ render() {
 				<p>ДО</p>
 				<input id="searchDataMax" id="dataMax" type="date" />
 		
-				  <div class="side">
-					  <input type="checkbox" class="checkbox" id="checkbox" checked={this.props.filter.check} />
-					  <label for="checkbox" class="ios-switch"></label>
+				  <div className="side">
+					  <input type="checkbox" className="checkbox" id="checkbox" checked={this.props.filter.check} />
+					  <label htmlFor="checkbox" className="ios-switch"></label>
 				  </div>  
 		
 				

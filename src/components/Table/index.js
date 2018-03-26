@@ -11,7 +11,8 @@ import './index.css';
 
 class Table extends React.Component {
 
-	title = ["ВЫПОЛНЕНИЕ", "ЗАГОЛОВОК", "ПРИОРИТЕТ", "ДАТА"];
+	title = ["", "ЗАГОЛОВОК","ОПИСАНИЕ", "ПРИОРИТЕТ", "ДАТА"];
+	sortBytitle = ['id','title','description','priority','date','done'];
 
 	componentWillMount() {
 		api.getItems()
@@ -27,10 +28,10 @@ class Table extends React.Component {
 				
 					{this.title.map((name,index)=>{
 						return (
-							<div className='title-block' key={index}>
+							<div className={`inf${index+1 } `} key={index}>
 								{name} 
-								<Icon onClick={()=>this.props.sortBy(name)} name='caret up'/>
-								<Icon  onClick={()=>this.props.sortBy('-'+name)} name='caret down'/>
+								<Icon onClick={()=>this.props.sortBy(this.sortBytitle[index])} name='caret up'/>
+								<Icon  onClick={()=>this.props.sortBy('-'+this.sortBytitle[index])} name='caret down'/>
 							</div>
 						)})}
 					
@@ -92,32 +93,28 @@ class Table extends React.Component {
 	renderTable() {
 		return(
 		
-				<tbody>
+				<div className='main-table'>
 					{ sort.sortBy(this.getFilterItems(),this.props.sort).map((item)=> {
-						return (<tr onClick={this.returnIdItem} className={item.id} key = {item.id}>
-								<td className={item.id}><input className = {item.id} type="checkbox" checked ={item.done} onChange={this.changeDone} /></td>
-								<td className={item.id}>{item.title}</td>
-								<td className={item.id}>{this.renderPriority(item.priority)}</td>
-								<td className={item.id}>{item.date.toString()}</td>
-							</tr>
+						return (
+							<div onClick={this.returnIdItem}  className={`block-table  ${item.id}`} key = {item.id}>
+								<div className={`inf1 ${item.id}`}><input className = {item.id} type="checkbox" checked ={item.done} onChange={this.changeDone} /></div>
+								<div className={`inf2 ${item.id}`}>{item.title}</div>
+								<div className={`inf3 ${item.id}`}>{item.description}</div>
+								<div className={`inf4 ${item.id}`}>{this.renderPriority(item.priority)}</div>
+								<div className={`inf5 ${item.id}`}>{item.date.toString()}</div>
+							</div>
 						)})}
-				</tbody>
+				</div>
 			
 		)
 	}
 
 	renderLoad() {
 		return (
-			<tbody>
-				<tr>
-					<td>
-						<Segment>
+		<div className='loader'>
 							<Loader active />
 							<Image src='/assets/images/wireframe/short-paragraph.png' />
-						</Segment>
-					</td>
-				</tr>	
-			</tbody>
+					</div>
 		)
 	}
 
@@ -125,10 +122,9 @@ class Table extends React.Component {
 		return(
 			<div>
 			{this.renderTitel()}
-				<table className='table'>
+				
 					
 					{this.props.list?this.renderTable():this.renderLoad()}
-				</table>
 			</div>
 		);
 	}
