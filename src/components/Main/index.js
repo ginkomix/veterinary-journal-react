@@ -42,9 +42,7 @@ class Main extends React.Component {
 	}
 
 	renderContext = (menu) => {
-		if(!this.props.id) {
-			return;
-		}
+		
 		switch(menu) {
 			case 'add': 
 				document.querySelector('.add').classList.add('button-control-active');
@@ -89,7 +87,7 @@ class Main extends React.Component {
 				<div className='headerMain'>
 					<div className='headerMain-top'>
 						{this.renderUserProfile()}
-						<div onClick={()=>this.props.id ? this.buttonMenu('add') :null} className="button-control add" >
+						<div onClick={()=> this.buttonMenu('add')} className="button-control add" >
 							<Icon name='plus'  />
 							<p>ДОБАВИТЬ</p>
 						</div>
