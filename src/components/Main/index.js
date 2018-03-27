@@ -6,6 +6,7 @@ import Table from "../Table";
 import ToDoForm from "../ToDoForm";
 import Filter from "../Filter";
 import ContextMenu from "../ContextMenu";
+import Delete from '../Delete'
 
 import { Switch, Route } from 'react-router-dom'
 import {api} from "../../utils/api";
@@ -35,7 +36,7 @@ class Main extends React.Component {
 			)
 		}
 	}
-	
+
 	buttonMenu = (str)=>{
 		this.props.menuChange(str);
 	}
@@ -53,8 +54,8 @@ class Main extends React.Component {
 						<ToDoForm/>
 					</div>
 				)
-				
-			case 'change': 
+
+				case 'change': 
 				document.querySelector('.change').classList.add('button-control-active');
 				return (
 					<div>
@@ -62,6 +63,15 @@ class Main extends React.Component {
 						<ContextMenu/>
 					</div>
 				)
+				case 'del': 
+				document.querySelector('.del').classList.add('button-control-active');
+				return (
+					<div>
+						<Blockout/>
+						<Delete/>
+					</div>
+				)
+				default: return;
 		}
 	}
 
@@ -87,7 +97,7 @@ class Main extends React.Component {
 							<Icon name='idea'  />
 							<p>ИЗМЕНИТЬ</p>
 						</div>
-						<div  onClick={()=>this.props.id ? this.buttonMenu('change') :null}  className="button-control del">
+						<div  onClick={()=>this.props.id ? this.buttonMenu('del') :null}  className="button-control del">
 							<Icon name='delete'  />
 							<p>УДАЛИТЬ</p>
 						</div>
