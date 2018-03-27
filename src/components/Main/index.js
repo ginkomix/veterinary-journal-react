@@ -5,10 +5,10 @@ import {connect} from 'react-redux';
 import Table from "../Table";
 import ToDoForm from "../ToDoForm";
 import Filter from "../Filter";
+import ContextMenu from "../ContextMenu";
 
 import { Switch, Route } from 'react-router-dom'
 import {api} from "../../utils/api";
-import ContextMenu from "../ContextMenu";
 import './index.css';
 import ava from '../../images/ava.png';
 import { Icon } from 'semantic-ui-react';
@@ -41,6 +41,9 @@ class Main extends React.Component {
 	}
 
 	renderContext = (menu) => {
+		if(!this.props.id) {
+			return;
+		}
 		switch(menu) {
 			case 'add': 
 				document.querySelector('.add').classList.add('button-control-active');
@@ -50,10 +53,16 @@ class Main extends React.Component {
 						<ToDoForm/>
 					</div>
 				)
-				case 'change': 
 				
+			case 'change': 
+				document.querySelector('.change').classList.add('button-control-active');
+				return (
+					<div>
+						<Blockout/>
+						<ContextMenu/>
+					</div>
+				)
 		}
-
 	}
 
 	out = ()=>{
@@ -70,15 +79,15 @@ class Main extends React.Component {
 				<div className='headerMain'>
 					<div className='headerMain-top'>
 						{this.renderUserProfile()}
-						<div onClick={()=>this.buttonMenu('add')} className="button-control add" >
+						<div onClick={()=>this.props.id ? this.buttonMenu('add') :null} className="button-control add" >
 							<Icon name='plus'  />
 							<p>ДОБАВИТЬ</p>
 						</div>
-						<div className="button-control">
+						<div onClick={()=>this.props.id ? this.buttonMenu('change') :null} className="button-control change">
 							<Icon name='idea'  />
 							<p>ИЗМЕНИТЬ</p>
 						</div>
-						<div className="button-control">
+						<div  onClick={()=>this.props.id ? this.buttonMenu('change') :null}  className="button-control del">
 							<Icon name='delete'  />
 							<p>УДАЛИТЬ</p>
 						</div>
@@ -104,5 +113,6 @@ class Main extends React.Component {
 
 export default withRouter(connect(state=>({
 	user:state.user,
-	menu:state.menu
+	menu:state.menu,
+	id: state.contextMenu
 }),{userAdd,menuChange})(Main));

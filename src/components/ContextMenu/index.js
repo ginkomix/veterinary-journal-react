@@ -5,6 +5,7 @@ import {changeItemID} from'../../actions/contextMenu';
 import {del,change} from '../../actions/item'
 import {connect} from 'react-redux';
 import Blockout from "../Blockout";
+import { menuChange } from '../../actions/menu';
 
 class ContextMenu extends React.Component {
 
@@ -18,16 +19,22 @@ class ContextMenu extends React.Component {
 		}
 		this.props.change(item);
 		this.props.changeItemID(0);
+		this.cloasMenu();
 	}
 
-	del = ()=> {
-		this.props.del(this.props.id);
-		this.props.changeItemID(0);
-	}
+	
 
 	cancel=()=> {
 		this.props.changeItemID(0);
+		this.cloasMenu();
 	}
+	
+	cloasMenu = () =>{
+		this.props.menuChange('');
+			document.querySelector('.change').classList.remove('button-control-active');
+		
+	}
+
 
 	renderChangeMenu = () =>{
 		if(this.props.id) {
@@ -58,15 +65,12 @@ class ContextMenu extends React.Component {
 						</div>
 						<div>
 							<Button.Group size='tiny'>
-								<Button color='green' onClick ={this.change}>Change</Button>
+								<Button color='green' onClick ={this.change}>ИЗМЕНИТЬ</Button>
 								<Button.Or />
-								<Button color='red' onClick = {this.del}>Delete</Button>
-								<Button.Or />
-								<Button  color='green' onClick = {this.cancel}>Cancel</Button>
+								<Button  color='green' onClick = {this.cancel}>ОТМЕНИТЬ</Button>
 							</Button.Group>
 						</div>
 					</div>
-					<Blockout/>
 				</div>
 			)
 		}
@@ -87,5 +91,6 @@ export default connect(state=>({
 }),{
 	changeItemID,
 	del,
-	change
+	change,
+	menuChange
 })(ContextMenu);
