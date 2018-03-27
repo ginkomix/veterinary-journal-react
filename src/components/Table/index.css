@@ -5,7 +5,7 @@
 	align-items: center;
 	font-size: 14px;
 	color: #ebebeb;
-	height: 38px;
+	height: 52px;
 }
 .main-table {
 	width: 100%;
@@ -21,6 +21,7 @@
 	border-left: 3px solid #1C1E21;
 }
 .active {
+	background: #eeeeee11;
 	border-left: 3px solid #6256a9;
 }
 .inf1 {
