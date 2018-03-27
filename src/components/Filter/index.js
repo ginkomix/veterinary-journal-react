@@ -29,7 +29,7 @@ class Filter extends React.Component {
 	}
 
 findeText(target) {
-	this.props.text(target.value);
+	this.props.text(target.value.toUpperCase());
 }
 
 render() {

@@ -91,7 +91,7 @@ getFilterItems() {
 	}
 	if(this.props.filter.text!=='') {
 
-		arr = arr.filter((item)=>item.title.includes(this.props.filter.text) || item.description.includes(this.props.filter.text));
+		arr = arr.filter((item)=>item.title.toUpperCase().includes(this.props.filter.text) || item.description.toUpperCase().includes(this.props.filter.text));
 	}
 
 	if(this.props.filter.dataMax) {
