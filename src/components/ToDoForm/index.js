@@ -30,7 +30,7 @@ class ToDoForm extends React.Component {
 		return(
 			<div className="addTask">
 				<div>
-					<input size='mini' placeholder='Title' id="title"  type="text"/>
+					<input size='mini' placeholder='ЗАГОЛОВОК' id="title"  type="text"/>
 					<select id="priorety" defaultValue="-1">
 						<option value ="-1" disabled>Priority</option>
 						<option  value="0">Low</option>
@@ -40,13 +40,13 @@ class ToDoForm extends React.Component {
 					<input size='mini' id="data" type="date" />
 				</div>
 				<div>
-					<textarea placeholder='Description' id="description">
+					<textarea placeholder='ОПИСАНИЕ' id="description">
 
 					</textarea>
 				</div>
-				<div>
-					<button onClick={this.addItem} id="add">ДБАВИТЬ</button>
-					<button onClick={this.cloasMenu} >ОТМЕНА</button>
+				<div className='button-block-task'>
+					<p className='buttonTask' onClick={this.addItem} id="add">ДОБАВИТЬ</p>
+					<p className='buttonTask' onClick={this.cloasMenu} >ОТМЕНА</p>
 				</div>
 			</div>
 
