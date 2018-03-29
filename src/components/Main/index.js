@@ -28,7 +28,7 @@ class Main extends React.Component {
 		if(this.props.user) {
 			let inf = JSON.parse( this.props.user.displayName);
 			return (
-				<div className="user-profile">
+				<div onClick={()=> this.buttonMenu('user')} className="user-profile user">
 					<img src={ava}  />
 					<p className='fimale'>{inf.surname}</p>
 					<p className='name'>{inf.name+' '+inf.patronymic}</p>
@@ -62,6 +62,14 @@ class Main extends React.Component {
 					</div>
 				)
 				case 'del': 
+				document.querySelector('.del').classList.add('button-control-active');
+				return (
+					<div>
+						<Blockout/>
+						<Delete/>
+					</div>
+				)
+				case 'user': 
 				document.querySelector('.del').classList.add('button-control-active');
 				return (
 					<div>

@@ -1,21 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {changeItemID} from'../../actions/contextMenu';
-import {del,change} from '../../actions/item';
 import { menuChange } from '../../actions/menu';
 import './index.css'
 
 
-class Delete extends React.Component {
-	del = ()=> {
-		this.props.del(this.props.id);
-		this.props.changeItemID(0);
+class UserInf extends React.Component {
+	change = ()=> {
 		this.cloasMenu();
 	}
 	
 	cloasMenu = () =>{
 		this.props.menuChange('');
-			document.querySelector('.del').classList.remove('button-control-active');
+			document.querySelector('.user').classList.remove('button-control-active');
 		
 	}
 	
@@ -37,7 +34,5 @@ class Delete extends React.Component {
 export default connect(state=>({
 	id: state.contextMenu
 }),{
-	changeItemID,
-	del,
 	menuChange
-   })(Delete);
+   })(UserInf);

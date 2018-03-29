@@ -20,7 +20,7 @@
     align-items: center;
 }
 .journal {
-    min-height: 100vh;
+    max-height: 100vh;
     width: 100%;  
     padding: 20px;
      
@@ -31,6 +31,7 @@
     width: 100%;
     min-height: 93vh;
 	position: relative;
+	
 }
 .user-profile {
     padding: 35px 0px;
@@ -38,6 +39,9 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+}
+.user-profile:hover {
+	 background-color: #18191c;
 }
 .user-profile img{
         max-width: 77px;
