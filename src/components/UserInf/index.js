@@ -17,41 +17,55 @@ class UserInf extends React.Component {
 
 	}
 
-	componentDidMount(){
-		var htmlelement = document.querySelector(".file");
-		htmlelement.addEventListener("dragover", function (event) {
-			event.preventDefault();
-			htmlelement.classList.add('hover');
-		}, false);
-
+	dropFile = (event,htmlelement) => {
+		event.preventDefault();
+		let file = event.dataTransfer.files[0],
+			block = document.querySelector('.file');
+		if (!file.type.match('image.*')|| !file) {
+			return;
+		}
+		htmlelement.classList.remove('hover');
+		block.innerHTML='';
 		
+		var reader = new FileReader();
+		reader.onload = ((theFile)=> {
+			return function(e) {
+				var span = document.createElement('p');
+				span.innerHTML = ['<img class="newImgAva" title="', escape(theFile.name), '" src="', e.target.result, '" />'].join('');
+				block.insertBefore(span, null);
+			};
+		})(file);
+		reader.readAsDataURL(file);
+	}
 
-		htmlelement.addEventListener("dragleave", function( event ) {
-			htmlelement.classList.remove('hover');
-					}, false);
+	dragover =(event,htmlelement)=> {
+		event.preventDefault();
+		htmlelement.classList.add('hover');
+	}
 
-		htmlelement.addEventListener("drop", function (event) {
-			event.preventDefault();
-			var files = event.dataTransfer.files;
-			for (var i = 0; i < files.length; i++) {
-				console.log("Имя файла: " + files[i].name);
-				console.log("Тип файла: " + files[i].type);
-				console.log("Размер файла: "+files[i].size)
-			}
-		}, false);
+	dragleave = (event,htmlelement) => {
+		htmlelement.classList.remove('hover');
+	}
+
+	componentDidMount(){
+		let htmlelement = document.querySelector(".file");
+		htmlelement.addEventListener("dragover", (event)=>this.dragover(event,htmlelement));
+		htmlelement.addEventListener("dragleave",( event )=>this.dragleave(event,htmlelement));
+		htmlelement.addEventListener("drop",(event)=>this.dropFile(event,htmlelement));
 	}
 
 render() {
 	return (
 		<div className='addTask'>
-		<span>РЕДАКТИРОВАНИЕ ПРОФИЛЯ</span>	
-		<div className='file'>
-
-		</div>
-		<div className='button-block-task'>
-		<p className='buttonTask' onClick={this.change}>ИЗМЕНИТЬ</p>
-		<p className='buttonTask' onClick={this.cloasMenu}>НЕТ</p>
-		</div>
+			<span>РЕДАКТИРОВАНИЕ ПРОФИЛЯ</span>	
+			<div className='file'>
+				<span className=''>Перетащите файл</span>
+				<span className=''></span>
+			</div>
+			<div className='button-block-task'>
+				<p className='buttonTask' onClick={this.change}>ИЗМЕНИТЬ</p>
+				<p className='buttonTask' onClick={this.cloasMenu}>НЕТ</p>
+			</div>
 		</div>
 	)
 
