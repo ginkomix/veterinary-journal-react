@@ -39,6 +39,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+	cursor: pointer;
 }
 .user-profile:hover {
 	 background-color: #18191c;

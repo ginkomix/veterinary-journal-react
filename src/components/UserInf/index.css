@@ -1,0 +1,9 @@
+.file {
+	width: 200px;
+	height: 150px;
+	border: 1px solid rgba(127, 127, 127,0.4);
+}
+.hover {
+    background: #ddd!important;
+    border-color: #aaa;
+}

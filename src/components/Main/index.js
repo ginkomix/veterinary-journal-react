@@ -6,7 +6,8 @@ import Table from "../Table";
 import ToDoForm from "../ToDoForm";
 import Filter from "../Filter";
 import ContextMenu from "../ContextMenu";
-import Delete from '../Delete'
+import Delete from '../Delete';
+import UserInf from '../UserInf';
 
 import { Switch, Route } from 'react-router-dom'
 import {api} from "../../utils/api";
@@ -70,11 +71,11 @@ class Main extends React.Component {
 					</div>
 				)
 				case 'user': 
-				document.querySelector('.del').classList.add('button-control-active');
+				document.querySelector('.user').classList.add('button-control-active');
 				return (
 					<div>
 						<Blockout/>
-						<Delete/>
+						<UserInf/>
 					</div>
 				)
 				default: return;
