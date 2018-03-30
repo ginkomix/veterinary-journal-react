@@ -3,20 +3,25 @@
 	object-fit: cover;
 	height: 150px;	
 }
-.textFile {
-	
-}
-.file {
-	border: 1px solid rgba(127, 127, 127,0.4);
+.file-block {
 	width: 270px;
 	height: 150px;
 	 margin-left: 15px!important;
 	margin-top: 10px;
 	position: relative;
 }
-.file span {
-	width: 100%;
-    display: block;
+.file {
+	border: 1px solid rgba(127, 127, 127,0.4);
+	width: 270px;
+	height: 150px;
+	position: absolute;
+	z-index: 4;
+	left: 0;
+	right: 0;
+	
+}
+.file-block p {
+	width: 100%;  
     position: absolute;
     font-size: 18px;
     text-align: center;
@@ -25,7 +30,22 @@
 	top: 50%;
 	transform: translate(-50%, -50%);
 }
+.inf-file {
+	display: block;
+}
+.inf-put {
+	display: none;	
+}
 .hover {
-
     border-color: #aaa;
+}
+.changeInfUser {
+	display: flex;
+}
+.changeInfUserInput {
+	display: flex;
+	flex-direction: column;
+}
+.changeInfUserInput input{
+	margin-top: 9px;
 }

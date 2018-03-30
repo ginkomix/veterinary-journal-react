@@ -7,14 +7,43 @@ import './index.css'
 
 class UserInf extends React.Component {
 	change = ()=> {
-
+		let name = document.querySelector('#nameNew'),
+			surname = document.querySelector('#surnameNew'),
+			patronymic = document.querySelector('#patronymicNew'),
+			inf ={
+				name:name.value,
+				surname:surname.value,
+				patronymic:patronymic.value				
+			}
+		if(name.value.length===0 || name.value.length>10) {		
+			name.className ='error';
+			return;
+		} else {
+			name.className ='success';
+		} 
+		if(surname.value.length===0 || surname.value.length>10) {		
+			surname.className ='error';
+			return;
+		} else {
+			surname.className ='success';
+		}
+		if(patronymic.value.length===0 || patronymic.value.length>10) {		
+			patronymic.className ='error';
+			return;
+		} else {
+			patronymic.className ='success';
+		}  
 		this.cloasMenu();
 	}
 
 	cloasMenu = () =>{
 		this.props.menuChange('');
 		document.querySelector('.user').classList.remove('button-control-active');
-
+	}
+	
+	verification = ()=> {
+		
+		
 	}
 
 	dropFile = (event,htmlelement) => {
@@ -26,7 +55,7 @@ class UserInf extends React.Component {
 		}
 		htmlelement.classList.remove('hover');
 		block.innerHTML='';
-		
+
 		var reader = new FileReader();
 		reader.onload = ((theFile)=> {
 			return function(e) {
@@ -41,10 +70,14 @@ class UserInf extends React.Component {
 	dragover =(event,htmlelement)=> {
 		event.preventDefault();
 		htmlelement.classList.add('hover');
+		document.querySelector('.inf-file').style.display = 'none';
+		document.querySelector('.inf-put').style.display = 'block';
 	}
 
 	dragleave = (event,htmlelement) => {
 		htmlelement.classList.remove('hover');
+		document.querySelector('.inf-file').style.display = 'block';
+		document.querySelector('.inf-put').style.display = 'none';
 	}
 
 	componentDidMount(){
@@ -57,14 +90,22 @@ class UserInf extends React.Component {
 render() {
 	return (
 		<div className='addTask'>
-			<span>РЕДАКТИРОВАНИЕ ПРОФИЛЯ</span>	
-			<div className='file'>
-				<span className=''>Перетащите файл</span>
-				<span className=''></span>
+			<span>РЕДАКТИРОВАНИЕ ПРОФИЛЯ</span>
+			<div className='changeInfUser'>	
+				<div className='file-block'>
+					<p className='inf-file'>ПЕРЕТАЩИТЕ ФАЙЛ</p>
+					<p className='inf-put'>ОТПУСТЕ ДЛЯ ЗАГРУЗКИ</p>
+					<div className='file'></div>
+				</div>
+				<div className='changeInfUserInput'>
+					<input type="text"id='nameNew' placeholder='ИМЯ'/>
+					<input type="text"id='surnameNew' placeholder='ФАМИЛИЯ'/>
+					<input type="text"id='patronymicNew' placeholder='ОТЧЕСТВО'/>
+				</div>
 			</div>
 			<div className='button-block-task'>
 				<p className='buttonTask' onClick={this.change}>ИЗМЕНИТЬ</p>
-				<p className='buttonTask' onClick={this.cloasMenu}>НЕТ</p>
+				<p className='buttonTask' onClick={this.cloasMenu}>ОТМЕНА</p>
 			</div>
 		</div>
 	)
