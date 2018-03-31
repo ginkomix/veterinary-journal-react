@@ -26,15 +26,21 @@ class Main extends React.Component {
 
 
 	renderUserProfile = ()=>{
+
+
 		if(this.props.user) {
-			let inf = JSON.parse( this.props.user.displayName);
+		
+				let inf = JSON.parse( this.props.user.displayName);
 			return (
 				<div onClick={()=> this.buttonMenu('user')} className="user-profile user">
-					<img src={ava}  />
+					<div className='imgBox'>
+						<img className='avaUser' src={this.props.user.photoURL ? this.props.user.photoURL : ava}  />
+					</div>				
 					<p className='fimale'>{inf.surname}</p>
 					<p className='name'>{inf.name+' '+inf.patronymic}</p>
 				</div>
 			)
+			
 		}
 	}
 
@@ -43,7 +49,7 @@ class Main extends React.Component {
 	}
 
 	renderContext = (menu) => {
-		
+
 		switch(menu) {
 			case 'add': 
 				document.querySelector('.add').classList.add('button-control-active');

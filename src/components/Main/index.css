@@ -44,12 +44,19 @@
 .user-profile:hover {
 	 background-color: #18191c;
 }
-.user-profile img{
-        max-width: 77px;
-        border-radius: 50%;
+.imgBox{
+        width: 77px;
+	height: 77;
     margin-bottom: 15px;
   
 }
+.imgBox img {
+	width: 100%;
+	object-fit: cover;
+	height: 77px;
+	 border-radius: 50%;
+}
+
 .fimale {
     font-size: 16px;
     font-weight: 700;
