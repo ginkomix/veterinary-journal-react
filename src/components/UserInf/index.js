@@ -65,22 +65,25 @@ class UserInf extends React.Component {
 				document.querySelector('.avaUser').setAttribute('src',e.target.result);
 				span.innerHTML = ['<img class="newImgAva" title="', escape(theFile.name), '" src="', e.target.result, '" />'].join('');
 				block.insertBefore(span, null);
-				let metadata = {
-					contentType: 'image/jpeg'
-				};
-
-				firebase.storage().ref().child(this.props.user.email+'/ava.jpeg').put(theFile,metadata);
-				let starsRef = firebase.storage().ref().child(this.props.user.email+'/ava.jpeg'),
-					urlAva = '';
-				
-				starsRef.getDownloadURL().then((url)=> {
-					this.props.user.updateProfile({
-						photoURL: url
-					})
-				})
+				this.updateUser(theFile);
 			};
 		})(file);
 		reader.readAsDataURL(file);
+	}
+
+	updateUser = (theFile)=>{
+		let metadata = {
+			contentType: 'image/jpeg'
+		};
+		firebase.storage().ref().child(this.props.user.email+'/ava.jpeg').put(theFile,metadata);
+		let starsRef = firebase.storage().ref().child(this.props.user.email+'/ava.jpeg'),
+			urlAva = '';
+
+		starsRef.getDownloadURL().then((url)=> {
+			this.props.user.updateProfile({
+				photoURL: url
+			})
+		})
 	}
 
 	dragover =(event,htmlelement)=> {
