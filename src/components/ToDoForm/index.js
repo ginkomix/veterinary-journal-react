@@ -1,7 +1,8 @@
 import React from 'react';
-import { Button,Icon ,Input } from 'semantic-ui-react';
 import {connect} from 'react-redux';
 import {add} from '../../actions/item';
+import './index.css';
+import { menuChange } from '../../actions/menu';
 class ToDoForm extends React.Component {
 
 	addItem = ()=>{
@@ -16,6 +17,12 @@ class ToDoForm extends React.Component {
 		document.querySelector('#data').value = '';
 		document.querySelector('#description').value = '';
 		this.props.add(item);
+		this.cloasMenu();
+	}
+	cloasMenu = () =>{
+		this.props.menuChange('');
+			document.querySelector('.add').classList.remove('button-control-active');
+		
 	}
 
 	
@@ -23,26 +30,23 @@ class ToDoForm extends React.Component {
 		return(
 			<div className="addTask">
 				<div>
-					<Input size='mini' placeholder='Title' id="title"  type="text"/>
+					<input size='mini' placeholder='ЗАГОЛОВОК' id="title"  type="text"/>
 					<select id="priorety" defaultValue="-1">
 						<option value ="-1" disabled>Priority</option>
 						<option  value="0">Low</option>
 						<option value="1">Mid</option>
 						<option value="2">Max</option>
 					</select>
-					<Input size='mini' id="data" type="date" />
+					<input size='mini' id="data" type="date" />
 				</div>
 				<div>
-					<textarea placeholder='Description' id="description">
+					<textarea placeholder='ОПИСАНИЕ' id="description">
 
 					</textarea>
 				</div>
-				<div>
-					<Button  size='tiny' color='green' onClick={this.addItem} id="add" animated>
-						<Button.Content  visible>Add</Button.Content>
-						<Button.Content hidden> <Icon name='pencil'/></Button.Content>
-					</Button>
-					
+				<div className='button-block-task'>
+					<p className='buttonTask' onClick={this.addItem} id="add">ДОБАВИТЬ</p>
+					<p className='buttonTask' onClick={this.cloasMenu} >ОТМЕНА</p>
 				</div>
 			</div>
 
@@ -52,5 +56,5 @@ class ToDoForm extends React.Component {
 
 export default connect(
 	undefined,{
-	add
+	add,menuChange
 })(ToDoForm);

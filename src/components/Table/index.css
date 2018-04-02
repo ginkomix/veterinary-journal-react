@@ -1,0 +1,58 @@
+.title {
+	width: 100%;
+	display: flex;
+	background-color: #574c9d;
+	align-items: center;
+	font-size: 14px;
+	color: #ebebeb;
+	height: 52px;
+}
+.main-table {
+	 max-height: 80vh;
+	overflow-y: scroll;
+}
+.block-table {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	font-size: 14px;
+	color: #ebebeb;
+	height: 52px;
+	border-bottom: 1px solid rgba(127, 127, 127,0.4);
+	border-left: 3px solid #1C1E21;
+	cursor: pointer;
+}
+.active {
+	background: #eeeeee11;
+	border-left: 3px solid #6256a9;
+}
+.inf1 {
+	flex-basis:4%;
+	flex-grow:1;
+	padding-left: 20px;
+	overflow:hidden;
+}
+.inf2 {
+	flex-basis: 19%;
+	padding-left: 20px;
+	flex-grow:2;
+	overflow:hidden;
+	 word-wrap: break-word;
+}
+.inf3{
+	flex-basis: 47%;
+	padding-left: 20px;
+	overflow:hidden;
+	flex-grow:3 ;
+	 word-wrap: break-word;
+}
+.inf4 {
+	flex-basis: 15%;
+	padding-left: 20px;
+	overflow:hidden;
+}
+.inf5 {
+	flex-basis: 16%;
+	padding-left: 20px;
+	overflow:hidden;
+}

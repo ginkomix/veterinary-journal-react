@@ -1,10 +1,9 @@
 import React from 'react';
 import './index.css';
-import { Button} from 'semantic-ui-react';
 import {changeItemID} from'../../actions/contextMenu';
 import {del,change} from '../../actions/item'
 import {connect} from 'react-redux';
-import Blockout from "../Blockout";
+import { menuChange } from '../../actions/menu';
 
 class ContextMenu extends React.Component {
 
@@ -17,16 +16,16 @@ class ContextMenu extends React.Component {
 			description: document.querySelector('#descriptionChange').value
 		}
 		this.props.change(item);
-		this.props.changeItemID(0);
-	}
-
-	del = ()=> {
-		this.props.del(this.props.id);
-		this.props.changeItemID(0);
+		this.cloasMenu();
 	}
 
 	cancel=()=> {
-		this.props.changeItemID(0);
+		this.cloasMenu();
+	}
+	
+	cloasMenu = () =>{
+		this.props.menuChange('');
+			document.querySelector('.change').classList.remove('button-control-active');	
 	}
 
 	renderChangeMenu = () =>{
@@ -40,7 +39,7 @@ class ContextMenu extends React.Component {
 
 			return(
 				<div>
-					<div className="changeTask">
+					<div className="addTask">
 						<div>
 							<input id="titleChange" defaultValue={this.props.item[key].title}  type="text"/>
 							<select id="prioretyChange" defaultValue={this.props.item[key].priority} >
@@ -56,17 +55,13 @@ class ContextMenu extends React.Component {
 
 							</textarea>
 						</div>
-						<div>
-							<Button.Group size='tiny'>
-								<Button color='green' onClick ={this.change}>Change</Button>
-								<Button.Or />
-								<Button color='red' onClick = {this.del}>Delete</Button>
-								<Button.Or />
-								<Button  color='green' onClick = {this.cancel}>Cancel</Button>
-							</Button.Group>
+						<div className='button-block-task'>
+							<p className='buttonTask' onClick ={this.change}>ИЗМЕНИТЬ</p>
+
+								<p className='buttonTask'  onClick = {this.cancel}>ОТМЕНИТЬ</p>
+							
 						</div>
 					</div>
-					<Blockout/>
 				</div>
 			)
 		}
@@ -87,5 +82,6 @@ export default connect(state=>({
 }),{
 	changeItemID,
 	del,
-	change
+	change,
+	menuChange
 })(ContextMenu);

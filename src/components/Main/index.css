@@ -1,0 +1,135 @@
+.main {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #18191c;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+.main p {
+    margin: 0;
+    padding: 0;
+}
+.headerMain {
+    min-width: 180px;
+    background: linear-gradient(180deg, #202226, #18191c);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.journal {
+    max-height: 100vh;
+	width: calc(100% - 180px);
+   
+    padding: 20px;
+     
+}
+.journal-box {
+    background: linear-gradient(0deg, rgba(24,25,28,1) 0%, rgba(32,34,38,1) 65%, rgba(32,34,38,1) 100%);
+    box-shadow: 0px 8px 12px 0px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    min-height: 93vh;
+	position: relative;
+	
+}
+.user-profile {
+    padding: 35px 0px;
+ 	display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+	cursor: pointer;
+}
+.user-profile:hover {
+	 background-color: #18191c;
+}
+.imgBox{
+        width: 77px;
+	height: 77;
+    margin-bottom: 15px;
+  
+}
+.imgBox img {
+	width: 100%;
+	object-fit: cover;
+	height: 77px;
+	 border-radius: 50%;
+}
+
+.fimale {
+    font-size: 16px;
+    font-weight: 700;
+    color: #c5c5c5;
+    letter-spacing: 1px;
+    display: block;
+}
+.name {
+     color: #c5c5c5;
+    margin-top: 3px;
+    letter-spacing: 0.7px;
+        font-size: 12px;
+    font-weight: 200;
+}
+.button-control {
+    
+    width: 100%;
+}
+.headerMain-top {
+    width: 100%;
+}
+.button-control{
+      display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 25px 0;
+    width: 100%;
+    cursor: pointer;
+}
+.button-control i{
+    font-size: 43px;
+   
+    color: #898989;
+}
+.button-control p{
+        display: block;
+    font-weight: 200;
+    font-size: 14px;
+    color: #c5c5c5;
+    letter-spacing: 0.5px;
+}
+.button-control:hover{
+       background-color: #18191c;
+}
+.button-control-active {
+    background-color: #18191c;
+}
+.footer {
+    padding-bottom: 20px;
+    width: 100%;
+    display: flex;
+     flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.footer span {
+    display: block;
+    cursor: pointer;
+    color: #c5c5c5;
+    font-weight: 200;
+    font-size: 16px;
+    color: #c5c5c5;
+    letter-spacing: 0.5px;
+    padding: 10px 0;
+}
+.footer span:hover {
+    color: white;
+}
+.footer p {
+     color: #898989;
+}
+.fimale, .name {
+     text-transform: uppercase;
+}
