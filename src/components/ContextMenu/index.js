@@ -1,10 +1,8 @@
 import React from 'react';
 import './index.css';
-import { Button} from 'semantic-ui-react';
 import {changeItemID} from'../../actions/contextMenu';
 import {del,change} from '../../actions/item'
 import {connect} from 'react-redux';
-import Blockout from "../Blockout";
 import { menuChange } from '../../actions/menu';
 
 class ContextMenu extends React.Component {
@@ -21,18 +19,14 @@ class ContextMenu extends React.Component {
 		this.cloasMenu();
 	}
 
-	
-
 	cancel=()=> {
 		this.cloasMenu();
 	}
 	
 	cloasMenu = () =>{
 		this.props.menuChange('');
-			document.querySelector('.change').classList.remove('button-control-active');
-		
+			document.querySelector('.change').classList.remove('button-control-active');	
 	}
-
 
 	renderChangeMenu = () =>{
 		if(this.props.id) {

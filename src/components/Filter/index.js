@@ -39,9 +39,9 @@ render() {
 			<form onChange={this.changeForm}>
 				<input id="searchText" placeholder='ПОИСК'  type="text"/>
 				<p>ДАТА ОТ</p>
-				<input id="searchDataMin" id="dataMin" type="date" />
+				<input  id="dataMin" type="date" />
 				<p>ДО</p>
-				<input id="searchDataMax" id="dataMax" type="date" />
+				<input id="dataMax" type="date" />
 		
 				  <div className="side">
 					  <input type="checkbox" className="checkbox" id="checkbox" checked={this.props.filter.check} />

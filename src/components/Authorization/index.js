@@ -26,8 +26,6 @@ class Authorization extends React.Component {
 	}
 
 	sigIn = (login,password) =>{
-		
-		let user = null;
 		firebase.auth().signInWithEmailAndPassword(login.value, password.value)
 			.then((user)=>{
 			

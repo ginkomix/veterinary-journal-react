@@ -6,7 +6,7 @@ import {defaultItem,changeDone} from '../../actions/item';
 import {sortBy} from '../../actions/sort';
 import {changeItemID} from'../../actions/contextMenu';
 import {api} from '../../utils/api';
-import { Loader, Image, Segment } from 'semantic-ui-react';
+import { Loader, Image } from 'semantic-ui-react';
 import './index.css';
 
 class Table extends React.Component {

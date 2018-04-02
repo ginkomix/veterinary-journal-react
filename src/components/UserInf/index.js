@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {changeItemID} from'../../actions/contextMenu';
 import { menuChange } from '../../actions/menu';
 import { userAdd } from '../../actions/user';
 import firebase from 'firebase';
@@ -85,8 +84,7 @@ class UserInf extends React.Component {
 			contentType: 'image/jpeg'
 		};
 		firebase.storage().ref().child(this.props.user.email+'/ava.jpeg').put(theFile,metadata);
-		let starsRef = firebase.storage().ref().child(this.props.user.email+'/ava.jpeg'),
-			urlAva = '';
+		let starsRef = firebase.storage().ref().child(this.props.user.email+'/ava.jpeg');
 
 		starsRef.getDownloadURL().then((url)=> {
 			this.props.user.updateProfile({

@@ -8,9 +8,6 @@ import Filter from "../Filter";
 import ContextMenu from "../ContextMenu";
 import Delete from '../Delete';
 import UserInf from '../UserInf';
-
-import { Switch, Route } from 'react-router-dom'
-import {api} from "../../utils/api";
 import './index.css';
 import ava from '../../images/ava.png';
 import { Icon } from 'semantic-ui-react';
@@ -23,17 +20,6 @@ import Blockout from '../Blockout'
 
 class Main extends React.Component {
 
-	shouldComponentUpdate(nextProps, nextState) {
-		console.log(nextProps.user.displayName,this.props.user.displayName);
-		if(this.props.user ||  JSON.parse(nextProps.user.displayName)!= JSON.parse(this.props.user.displayName)) {
-			
-			return true;
-		}
-	
-		
-	}
-
-
 	renderUserProfile = ()=>{
 
 
@@ -43,7 +29,7 @@ class Main extends React.Component {
 			return (
 				<div onClick={()=> this.buttonMenu('user')} className="user-profile user">
 					<div className='imgBox'>
-						<img className='avaUser' src={this.props.user.photoURL ? this.props.user.photoURL : ava}  />
+						<img className='avaUser' alt='ava' src={this.props.user.photoURL ? this.props.user.photoURL : ava}  />
 					</div>				
 					<p className='fimale'>{inf.surname}</p>
 					<p className='name'>{inf.name+' '+inf.patronymic}</p>
