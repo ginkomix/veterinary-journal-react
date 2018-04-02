@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {changeItemID} from'../../actions/contextMenu';
 import { menuChange } from '../../actions/menu';
+import { userAdd } from '../../actions/user';
 import firebase from 'firebase';
 import './index.css'
 
@@ -34,7 +35,8 @@ class UserInf extends React.Component {
 		} else {
 			patronymic.className ='success';
 		}  
-		this.cloasMenu();
+		this.updateUserInf(inf);
+		
 	}
 
 	cloasMenu = () =>{
@@ -42,9 +44,16 @@ class UserInf extends React.Component {
 		document.querySelector('.user').classList.remove('button-control-active');
 	}
 
-	verification = ()=> {
-
-
+	updateUserInf = (inf)=> {	
+		let user = firebase.auth().currentUser;
+		user.updateProfile({
+			displayName: JSON.stringify(inf)
+		})
+			.then(()=>{				
+			this.props.userAdd(user);
+			this.cloasMenu();
+		});
+		
 	}
 
 	dropFile = (event,htmlelement) => {
@@ -109,23 +118,23 @@ class UserInf extends React.Component {
 render() {
 	return (
 		<div className='addTask'>
-		<span>РЕДАКТИРОВАНИЕ ПРОФИЛЯ</span>
-		<div className='changeInfUser'>	
-		<div className='file-block'>
-		<p className='inf-file'>ПЕРЕТАЩИТЕ ФАЙЛ</p>
-		<p className='inf-put'>ОТПУСТЕ ДЛЯ ЗАГРУЗКИ</p>
-		<div className='file'></div>
-		</div>
-		<div className='changeInfUserInput'>
-		<input type="text"id='nameNew' placeholder='ИМЯ'/>
-		<input type="text"id='surnameNew' placeholder='ФАМИЛИЯ'/>
-		<input type="text"id='patronymicNew' placeholder='ОТЧЕСТВО'/>
-		</div>
-		</div>
-		<div className='button-block-task'>
-		<p className='buttonTask' onClick={this.change}>ИЗМЕНИТЬ</p>
-		<p className='buttonTask' onClick={this.cloasMenu}>ОТМЕНА</p>
-		</div>
+			<span>РЕДАКТИРОВАНИЕ ПРОФИЛЯ</span>
+			<div className='changeInfUser'>	
+				<div className='file-block'>
+					<p className='inf-file'>ПЕРЕТАЩИТЕ ФАЙЛ</p>
+					<p className='inf-put'>ОТПУСТЕ ДЛЯ ЗАГРУЗКИ</p>
+					<div className='file'></div>
+				</div>
+				<div className='changeInfUserInput'>
+					<input type="text"id='nameNew' placeholder='ИМЯ'/>
+					<input type="text"id='surnameNew' placeholder='ФАМИЛИЯ'/>
+					<input type="text"id='patronymicNew' placeholder='ОТЧЕСТВО'/>
+				</div>
+			</div>
+			<div className='button-block-task'>
+				<p className='buttonTask' onClick={this.change}>ИЗМЕНИТЬ</p>
+				<p className='buttonTask' onClick={this.cloasMenu}>ОТМЕНА</p>
+			</div>
 		</div>
 	)
 
@@ -137,5 +146,6 @@ export default connect(state=>({
 	id: state.contextMenu,
 	user: state.user
 }),{
-	menuChange
+	menuChange,
+	userAdd
    })(UserInf);

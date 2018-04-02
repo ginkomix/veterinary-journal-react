@@ -23,6 +23,15 @@ import Blockout from '../Blockout'
 
 class Main extends React.Component {
 
+	shouldComponentUpdate(nextProps, nextState) {
+		console.log(nextProps.user.displayName,this.props.user.displayName);
+		if(this.props.user ||  JSON.parse(nextProps.user.displayName)!= JSON.parse(this.props.user.displayName)) {
+			
+			return true;
+		}
+	
+		
+	}
 
 
 	renderUserProfile = ()=>{

@@ -21,7 +21,8 @@
 }
 .journal {
     max-height: 100vh;
-    width: 100%;  
+	width: calc(100% - 180px);
+   
     padding: 20px;
      
 }
