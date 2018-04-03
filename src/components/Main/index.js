@@ -11,15 +11,15 @@ import ava from '../../images/ava.png';
 import { Icon } from 'semantic-ui-react';
 import { userAdd } from '../../actions/user';
 import { menuChange } from '../../actions/menu';
-import firebase from 'firebase';
 import { withRouter } from 'react-router-dom';
 import Blockout from '../Blockout';
+import {account} from '../../utils/accountsApi';
 
 class Main extends React.Component {
 
 	renderUserProfile = ()=>{
 		if(this.props.user) {
-				let inf = JSON.parse( this.props.user.displayName);
+			let inf = JSON.parse( this.props.user.displayName);
 			return (
 				<div onClick={()=> this.buttonMenu('user')}  className={`${this.props.menu ==='user' ? 'button-control-active' : ''} button-control`}>
 					<div className='imgBox'>
@@ -72,10 +72,10 @@ class Main extends React.Component {
 
 	out = ()=>{
 		this.props.userAdd(null);
-		firebase.auth().signOut()
+		account.out()
 			.then(()=>{
 			this.props.history.push("/");
-		})	
+		});	
 	}
 
 	render() {	
@@ -85,7 +85,7 @@ class Main extends React.Component {
 					<div className='headerMain-top'>
 						{this.renderUserProfile()}
 						<div onClick={()=> this.buttonMenu('add')} 
-							 className={`${this.props.menu ==='add' ? 'button-control-active' : ''} button-control`} >
+							className={`${this.props.menu ==='add' ? 'button-control-active' : ''} button-control`} >
 							<Icon name='plus'  />
 							<p>ДОБАВИТЬ</p>
 						</div>

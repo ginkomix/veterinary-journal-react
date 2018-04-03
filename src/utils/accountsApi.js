@@ -75,6 +75,15 @@ class Account {
 			})
 		})
 	}
+
+	out = ()=>{
+		return new Promise((resolve)=>{
+			firebase.auth().signOut()
+				.then(()=>{
+				resolve();
+			})
+		})
+	}
 }
 
 export let account = new Account();
