@@ -1,7 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-
-
 import Table from "../Table";
 import ToDoForm from "../ToDoForm";
 import Filter from "../Filter";
@@ -15,27 +13,22 @@ import { userAdd } from '../../actions/user';
 import { menuChange } from '../../actions/menu';
 import firebase from 'firebase';
 import { withRouter } from 'react-router-dom';
-import Blockout from '../Blockout'
-
+import Blockout from '../Blockout';
 
 class Main extends React.Component {
 
 	renderUserProfile = ()=>{
-
-
 		if(this.props.user) {
-		
 				let inf = JSON.parse( this.props.user.displayName);
 			return (
-				<div onClick={()=> this.buttonMenu('user')} className="user-profile user">
+				<div onClick={()=> this.buttonMenu('user')}  className={`${this.props.menu ==='user' ? 'button-control-active' : ''} button-control`}>
 					<div className='imgBox'>
 						<img className='avaUser' alt='ava' src={this.props.user.photoURL ? this.props.user.photoURL : ava}  />
 					</div>				
 					<p className='fimale'>{inf.surname}</p>
 					<p className='name'>{inf.name+' '+inf.patronymic}</p>
 				</div>
-			)
-			
+			)	
 		}
 	}
 
@@ -44,19 +37,15 @@ class Main extends React.Component {
 	}
 
 	renderContext = (menu) => {
-
 		switch(menu) {
 			case 'add': 
-				document.querySelector('.add').classList.add('button-control-active');
 				return (
 					<div>
 						<Blockout/>
 						<ToDoForm/>
 					</div>
 				)
-
 				case 'change': 
-				document.querySelector('.change').classList.add('button-control-active');
 				return (
 					<div>
 						<Blockout/>
@@ -64,7 +53,6 @@ class Main extends React.Component {
 					</div>
 				)
 				case 'del': 
-				document.querySelector('.del').classList.add('button-control-active');
 				return (
 					<div>
 						<Blockout/>
@@ -72,7 +60,6 @@ class Main extends React.Component {
 					</div>
 				)
 				case 'user': 
-				document.querySelector('.user').classList.add('button-control-active');
 				return (
 					<div>
 						<Blockout/>
@@ -97,15 +84,16 @@ class Main extends React.Component {
 				<div className='headerMain'>
 					<div className='headerMain-top'>
 						{this.renderUserProfile()}
-						<div onClick={()=> this.buttonMenu('add')} className="button-control add" >
+						<div onClick={()=> this.buttonMenu('add')} 
+							 className={`${this.props.menu ==='add' ? 'button-control-active' : ''} button-control`} >
 							<Icon name='plus'  />
 							<p>ДОБАВИТЬ</p>
 						</div>
-						<div onClick={()=>this.props.id ? this.buttonMenu('change') :null} className="button-control change">
+						<div onClick={()=>this.props.id ? this.buttonMenu('change') :null}  className={`${this.props.menu ==='change' ? 'button-control-active' : ''} button-control`}>
 							<Icon name='idea'  />
 							<p>ИЗМЕНИТЬ</p>
 						</div>
-						<div  onClick={()=>this.props.id ? this.buttonMenu('del') :null}  className="button-control del">
+						<div  onClick={()=>this.props.id ? this.buttonMenu('del') :null}  className={`${this.props.menu ==='del' ? 'button-control-active' : ''} button-control`}>
 							<Icon name='delete'  />
 							<p>УДАЛИТЬ</p>
 						</div>
@@ -120,7 +108,6 @@ class Main extends React.Component {
 						<Filter/>
 						<Table/>
 						{this.renderContext(this.props.menu)}
-
 					</div>
 				</div>
 			</div>

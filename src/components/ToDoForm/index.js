@@ -20,11 +20,8 @@ class ToDoForm extends React.Component {
 		this.cloasMenu();
 	}
 	cloasMenu = () =>{
-		this.props.menuChange('');
-			document.querySelector('.add').classList.remove('button-control-active');
-		
+		this.props.menuChange('');		
 	}
-
 	
 	render() {
 		return(

@@ -2,9 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { menuChange } from '../../actions/menu';
 import { userAdd } from '../../actions/user';
-import firebase from 'firebase';
+import {account} from '../../utils/accountsApi';
 import './index.css'
-
 
 class UserInf extends React.Component {
 	change = ()=> {
@@ -40,15 +39,11 @@ class UserInf extends React.Component {
 
 	cloasMenu = () =>{
 		this.props.menuChange('');
-		document.querySelector('.user').classList.remove('button-control-active');
 	}
 
 	updateUserInf = (inf)=> {	
-		let user = firebase.auth().currentUser;
-		user.updateProfile({
-			displayName: JSON.stringify(inf)
-		})
-			.then(()=>{				
+		account.updateInformation(inf)
+		.then((user)=>{
 			this.props.userAdd(user);
 			this.cloasMenu();
 		});
@@ -67,30 +62,16 @@ class UserInf extends React.Component {
 		block.innerHTML='';
 
 		let reader = new FileReader();
-		reader.onload = ((theFile)=> {
+		reader.onload = ((photo)=> {
 			return (e)=> {
 				let span = document.createElement('p');
 				document.querySelector('.avaUser').setAttribute('src',e.target.result);
-				span.innerHTML = ['<img class="newImgAva" title="', escape(theFile.name), '" src="', e.target.result, '" />'].join('');
+				span.innerHTML = ['<img class="newImgAva" title="', escape(photo.name), '" src="', e.target.result, '" />'].join('');
 				block.insertBefore(span, null);
-				this.updateUser(theFile);
+				account.updatePhoto(photo,this.props.user);
 			};
 		})(file);
 		reader.readAsDataURL(file);
-	}
-
-	updateUser = (theFile)=>{
-		let metadata = {
-			contentType: 'image/jpeg'
-		};
-		firebase.storage().ref().child(this.props.user.email+'/ava.jpeg').put(theFile,metadata);
-		let starsRef = firebase.storage().ref().child(this.props.user.email+'/ava.jpeg');
-
-		starsRef.getDownloadURL().then((url)=> {
-			this.props.user.updateProfile({
-				photoURL: url
-			})
-		})
 	}
 
 	dragover =(event,htmlelement)=> {

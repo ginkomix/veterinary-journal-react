@@ -49,8 +49,6 @@ returnIdItem = (ev) => {
 		return;
 	}
 	let id = Number(ev.target.classList[0]);
-
-	
 	let item = document.querySelector('.active'),
 	flag = document.querySelector('#item'+id).classList.contains('active');
 	if(item) {
@@ -58,12 +56,9 @@ returnIdItem = (ev) => {
 	}
 	if(!flag) {
 		this.props.changeItemID(id);
-		document.querySelector('#item'+id).classList.add('active');
 		return;
 	}
 	this.props.changeItemID('');
-
-
 }
 
 renderPriority(priority) {
@@ -110,7 +105,7 @@ renderTable() {
 		<div className='main-table'>
 			{ sort.sortBy(this.getFilterItems(),this.props.sort).map((item)=> {
 				return (
-					<div onClick={this.returnIdItem} id={`item${item.id}`}  className={`${item.id} block-table `} key = {item.id}>
+					<div onClick={this.returnIdItem} id={`item${item.id}`}  className={`${item.id} ${this.props.id===item.id?'active':''} block-table `} key = {item.id}>
 						<div className={`${item.id} inf1 `}><input className = {item.id} type="checkbox" checked ={item.done} onChange={this.changeDone} /></div>
 						<div className={`${item.id} inf2 `}>{item.title}</div>
 						<div className={`${item.id} inf3 `}>{item.description}</div>

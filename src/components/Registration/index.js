@@ -1,32 +1,17 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import './index.css';
-import firebase from 'firebase';
 import {userAdd} from '../../actions/user';
 import { withRouter } from 'react-router-dom';
 import {choice} from '../../actions/startForm';
+import {account} from '../../utils/accountsApi';
 
 class Registration extends React.Component {
 
 	regestration = (login,password,inf)=> {
-	
-		var user = null;
-		firebase.auth().createUserWithEmailAndPassword(login.value, password.value)
-			.then( ()=> {
-			user = firebase.auth().currentUser;
-			
-			user.sendEmailVerification();
-			return user;
-		})
-			.then((user)=> {
-			user.updateProfile({
-				displayName: JSON.stringify(inf)
-			})
-				.then(()=>{				
-				this.props.userAdd(user);
-				this.props.history.push("/journal");
-				
-			})
+		account.createUser(login,password,inf).then((user)=>{				
+			this.props.userAdd(user);
+			this.props.history.push("/journal");
 		})
 			.catch((error)=> {
 			login.className ='error';

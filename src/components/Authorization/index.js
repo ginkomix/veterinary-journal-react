@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import './index.css';
 import {userAdd} from '../../actions/user';
 import { withRouter } from 'react-router-dom';
-import firebase from 'firebase';
+import {account} from '../../utils/accountsApi';
 
 class Authorization extends React.Component {
 
@@ -26,9 +26,8 @@ class Authorization extends React.Component {
 	}
 
 	sigIn = (login,password) =>{
-		firebase.auth().signInWithEmailAndPassword(login.value, password.value)
-			.then((user)=>{
-			
+		account.sigIn(login,password)
+			.then((user)=>{	
 			this.props.userAdd(user);
 			this.props.history.push("/journal");
 		})
@@ -42,9 +41,9 @@ class Authorization extends React.Component {
 	render () {
 		return (
 			<div>
-			<input id='loginIn' placeholder='Логин' /><br/>
-			<input type='password' id='passwordIn' placeholder='Пароль' /><br/><br/>
-			<button onClick={this.verification} color='teal'>Вход</button>
+				<input id='loginIn' placeholder='Логин' /><br/>
+				<input type='password' id='passwordIn' placeholder='Пароль' /><br/><br/>
+				<button onClick={this.verification} color='teal'>Вход</button>
 			</div>
 		)
 	}

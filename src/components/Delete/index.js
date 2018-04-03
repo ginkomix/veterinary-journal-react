@@ -14,9 +14,7 @@ class Delete extends React.Component {
 	}
 	
 	cloasMenu = () =>{
-		this.props.menuChange('');
-			document.querySelector('.del').classList.remove('button-control-active');
-		
+		this.props.menuChange('');		
 	}
 	
 	render() {

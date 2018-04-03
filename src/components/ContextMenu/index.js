@@ -24,8 +24,7 @@ class ContextMenu extends React.Component {
 	}
 	
 	cloasMenu = () =>{
-		this.props.menuChange('');
-			document.querySelector('.change').classList.remove('button-control-active');	
+		this.props.menuChange('');	
 	}
 
 	renderChangeMenu = () =>{
