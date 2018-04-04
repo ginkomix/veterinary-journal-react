@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {add} from '../../actions/item';
+import {add} from '../../../actions/item';
 import './index.css';
-import { menuChange } from '../../actions/menu';
+import { menuChange } from '../../../actions/menu';
 class ToDoForm extends React.Component {
 
 	addItem = ()=>{

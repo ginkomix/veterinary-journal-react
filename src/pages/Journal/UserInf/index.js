@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { menuChange } from '../../actions/menu';
-import { userAdd } from '../../actions/user';
-import {account} from '../../utils/accountsApi';
+import { menuChange } from '../../../actions/menu';
+import { userAdd } from '../../../actions/user';
+import {account} from '../../../utils/accountsApi';
 import './index.css'
 
 class UserInf extends React.Component {
