@@ -9,10 +9,10 @@ class Delete extends React.Component {
   del = () => {
     this.props.del(this.props.id);
     this.props.changeItemID(0);
-    this.cloasMenu();
+    this.closeMenu();
   };
 
-  cloasMenu = () => {
+  closeMenu = () => {
     this.props.menuChange("");
   };
 
@@ -24,7 +24,7 @@ class Delete extends React.Component {
           <p className="buttonTask" onClick={this.del}>
             ДА
           </p>
-          <p className="buttonTask" onClick={this.cloasMenu}>
+          <p className="buttonTask" onClick={this.closeMenu}>
             НЕТ
           </p>
         </div>

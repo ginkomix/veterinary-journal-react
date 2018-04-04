@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import { account } from "../../utils/accountsApi";
 import { userAdd } from "../../actions/user";
 
-class Authenticatin extends React.Component {
+class Authentication extends React.Component {
   componentWillMount() {
     account
       .haveUser()
@@ -28,5 +28,5 @@ export default withRouter(
       user: state.user
     }),
     { userAdd }
-  )(Authenticatin)
+  )(Authentication)
 );

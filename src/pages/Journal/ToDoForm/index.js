@@ -16,9 +16,9 @@ class ToDoForm extends React.Component {
     document.querySelector("#data").value = "";
     document.querySelector("#description").value = "";
     this.props.add(item);
-    this.cloasMenu();
+    this.closeMenu();
   };
-  cloasMenu = () => {
+  closeMenu = () => {
     this.props.menuChange("");
   };
 
@@ -44,7 +44,7 @@ class ToDoForm extends React.Component {
           <p className="buttonTask" onClick={this.addItem} id="add">
             ДОБАВИТЬ
           </p>
-          <p className="buttonTask" onClick={this.cloasMenu}>
+          <p className="buttonTask" onClick={this.closeMenu}>
             ОТМЕНА
           </p>
         </div>

@@ -11,7 +11,7 @@ import "./index.css";
 
 class Table extends React.Component {
   title = ["", "ЗАГОЛОВОК", "ОПИСАНИЕ", "ПРИОРИТЕТ", "ДАТА"];
-  sortBytitle = ["id", "title", "description", "priority", "date", "done"];
+  sortByTitle = ["id", "title", "description", "priority", "date", "done"];
 
   componentWillMount() {
     api.getItems().then(state => {
@@ -27,11 +27,11 @@ class Table extends React.Component {
             <div className={`inf${index + 1} `} key={index}>
               {name}
               <Icon
-                onClick={() => this.props.sortBy(this.sortBytitle[index])}
+                onClick={() => this.props.sortBy(this.sortByTitle[index])}
                 name="caret up"
               />
               <Icon
-                onClick={() => this.props.sortBy("-" + this.sortBytitle[index])}
+                onClick={() => this.props.sortBy("-" + this.sortByTitle[index])}
                 name="caret down"
               />
             </div>

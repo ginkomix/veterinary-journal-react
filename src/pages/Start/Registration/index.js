@@ -8,9 +8,9 @@ import { account } from "../../../utils/accountsApi";
 import { inputError } from "../../../actions/inputError";
 
 class Registration extends React.Component {
-  regestration = (login, password, inf) => {
+  regestration = (login, password, information) => {
     account
-      .createUser(login, password, inf)
+      .createUser(login, password, information)
       .then(user => {
         this.props.userAdd(user);
         this.props.history.push("/journal");
@@ -27,7 +27,7 @@ class Registration extends React.Component {
       login = document.querySelector("#login"),
       password = document.querySelector("#password"),
       passwordTwo = document.querySelector("#passwordTwo"),
-      inf = {
+      information = {
         name: name.value,
         surname: surname.value,
         patronymic: patronymic.value
@@ -72,7 +72,7 @@ class Registration extends React.Component {
     } else {
       this.props.inputError("");
     }
-    this.regestration(login, password, inf);
+    this.regestration(login, password, information);
   };
 
   render() {

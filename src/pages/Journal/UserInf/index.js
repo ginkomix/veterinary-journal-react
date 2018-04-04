@@ -3,47 +3,48 @@ import { connect } from "react-redux";
 import { menuChange } from "../../../actions/menu";
 import { userAdd } from "../../../actions/user";
 import { account } from "../../../utils/accountsApi";
+import { inputError } from "../../../actions/inputError";
 import "./index.css";
 
-class UserInf extends React.Component {
+class UserInformation extends React.Component {
   change = () => {
     let name = document.querySelector("#nameNew"),
       surname = document.querySelector("#surnameNew"),
       patronymic = document.querySelector("#patronymicNew"),
-      inf = {
+      information = {
         name: name.value,
         surname: surname.value,
         patronymic: patronymic.value
       };
     if (name.value.length === 0 || name.value.length > 10) {
-      name.className = "error";
+    this.props.inputError("nameNew");
       return;
     } else {
-      name.className = "success";
+    this.props.inputError("");
     }
     if (surname.value.length === 0 || surname.value.length > 10) {
-      surname.className = "error";
+      this.props.inputError("surnameNew");
       return;
     } else {
-      surname.className = "success";
+ this.props.inputError("");
     }
     if (patronymic.value.length === 0 || patronymic.value.length > 10) {
-      patronymic.className = "error";
+     this.props.inputError("patronymicNew");
       return;
     } else {
-      patronymic.className = "success";
+this.props.inputError("");
     }
-    this.updateUserInf(inf);
+    this.updateUserInformation(information);
   };
 
-  cloasMenu = () => {
+  closeMenu = () => {
     this.props.menuChange("");
   };
 
-  updateUserInf = inf => {
-    account.updateInformation(inf).then(user => {
+  updateUserInformation = information => {
+    account.updateInformation(information).then(user => {
       this.props.userAdd(user);
-      this.cloasMenu();
+      this.closeMenu();
     });
   };
 
@@ -114,16 +115,16 @@ class UserInf extends React.Component {
             <div className="file" />
           </div>
           <div className="changeInfUserInput">
-            <input type="text" id="nameNew" placeholder="ИМЯ" />
-            <input type="text" id="surnameNew" placeholder="ФАМИЛИЯ" />
-            <input type="text" id="patronymicNew" placeholder="ОТЧЕСТВО" />
+            <input className={this.props.input === 'nameNew' ? 'error' : ''} type="text" id="nameNew" placeholder="ИМЯ" />
+            <input className={this.props.input === 'surnameNew' ? 'error' : ''} type="text" id="surnameNew" placeholder="ФАМИЛИЯ" />
+            <input className={this.props.input === 'patronymicNew' ? 'error' : ''} type="text" id="patronymicNew" placeholder="ОТЧЕСТВО" />
           </div>
         </div>
         <div className="button-block-task">
           <p className="buttonTask" onClick={this.change}>
             ИЗМЕНИТЬ
           </p>
-          <p className="buttonTask" onClick={this.cloasMenu}>
+          <p className="buttonTask" onClick={this.closeMenu}>
             ОТМЕНА
           </p>
         </div>
@@ -135,10 +136,12 @@ class UserInf extends React.Component {
 export default connect(
   state => ({
     id: state.contextMenu,
-    user: state.user
+    user: state.user,
+	input:state.inputError
   }),
   {
     menuChange,
-    userAdd
+    userAdd,
+	inputError
   }
-)(UserInf);
+)(UserInformation);

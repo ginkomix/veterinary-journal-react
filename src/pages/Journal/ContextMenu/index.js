@@ -15,14 +15,14 @@ class ContextMenu extends React.Component {
       description: document.querySelector("#descriptionChange").value
     };
     this.props.change(item);
-    this.cloasMenu();
+    this.closeMenu();
   };
 
   cancel = () => {
-    this.cloasMenu();
+    this.closeMenu();
   };
 
-  cloasMenu = () => {
+  closeMenu = () => {
     this.props.menuChange("");
   };
 
