@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {changeItemID} from'../../actions/contextMenu';
-import {del} from '../../actions/item';
-import { menuChange } from '../../actions/menu';
+import {changeItemID} from'../../../actions/contextMenu';
+import {del} from '../../../actions/item';
+import { menuChange } from '../../../actions/menu';
 import './index.css'
 
 

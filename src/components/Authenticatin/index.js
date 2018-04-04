@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Main from '../Main';
+import Main from '../../pages/Journal';
 import {withRouter} from 'react-router-dom';
 import {account} from '../../utils/accountsApi';
 import {userAdd} from '../../actions/user';

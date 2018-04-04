@@ -2,26 +2,16 @@ import React from "react";
 import 'semantic-ui-css/semantic.min.css';
 import {Provider} from 'react-redux';
 import store from './config/store';
-import Start from './components/Start';
+import Start from './pages/Start';
 import Authenticatin from './components/Authenticatin';
-import firebase from 'firebase';
 import { Switch, Route } from 'react-router-dom'
-
-var config = {
-    apiKey: "AIzaSyBJqf0gLujy-LORi1oFG41JE040bx1F0RE",
-    authDomain: "veterinary-333.firebaseapp.com",
-    databaseURL: "https://veterinary-333.firebaseio.com",
-    projectId: "veterinary-333",
-    storageBucket: "veterinary-333.appspot.com",
-    messagingSenderId: "509184734732"
-};
-
-firebase.initializeApp(config);
-
+import {account} from './utils/accountsApi';
 
 class App extends React.Component {
 
-   
+   componentWillMount(){
+	   account.initializeBd();
+   }
 
     render() {
         return (

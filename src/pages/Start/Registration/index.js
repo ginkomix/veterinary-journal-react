@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import './index.css';
-import {userAdd} from '../../actions/user';
+import {userAdd} from '../../../actions/user';
 import { withRouter } from 'react-router-dom';
-import {choice} from '../../actions/startForm';
-import {account} from '../../utils/accountsApi';
-import {inputError} from '../../actions/inputError';
+import {choice} from '../../../actions/startForm';
+import {account} from '../../../utils/accountsApi';
+import {inputError} from '../../../actions/inputError';
 
 class Registration extends React.Component {
 

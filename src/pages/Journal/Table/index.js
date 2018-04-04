@@ -1,11 +1,11 @@
 import React from 'react';
-import {sort} from '../../utils/sort.js'
+import {sort} from '../../../utils/sort.js'
 import { Icon } from 'semantic-ui-react';
 import  { connect } from 'react-redux';
-import {defaultItem,changeDone} from '../../actions/item';
-import {sortBy} from '../../actions/sort';
-import {changeItemID} from'../../actions/contextMenu';
-import {api} from '../../utils/api';
+import {defaultItem,changeDone} from '../../../actions/item';
+import {sortBy} from '../../../actions/sort';
+import {changeItemID} from'../../../actions/contextMenu';
+import {api} from '../../../utils/api';
 import { Loader, Image } from 'semantic-ui-react';
 import './index.css';
 

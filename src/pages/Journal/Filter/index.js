@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {check,dataMax,dataMin,text} from '../../actions/filter';
+import {check,dataMax,dataMin,text} from '../../../actions/filter';
 import './index.css'
 class Filter extends React.Component {
 

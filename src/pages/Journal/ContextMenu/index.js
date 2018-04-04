@@ -1,9 +1,9 @@
 import React from 'react';
 import './index.css';
-import {changeItemID} from'../../actions/contextMenu';
-import {del,change} from '../../actions/item'
+import {changeItemID} from'../../../actions/contextMenu';
+import {del,change} from '../../../actions/item'
 import {connect} from 'react-redux';
-import { menuChange } from '../../actions/menu';
+import { menuChange } from '../../../actions/menu';
 
 class ContextMenu extends React.Component {
 

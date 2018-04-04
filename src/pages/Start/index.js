@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Authorization from '../Authorization';
-import Registration from '../Registration';
+import Authorization from './Authorization';
+import Registration from './Registration';
 import { Icon } from 'semantic-ui-react'
 import {choice} from '../../actions/startForm';
 import {userAdd} from '../../actions/user';

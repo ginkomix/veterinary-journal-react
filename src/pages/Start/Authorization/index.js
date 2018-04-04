@@ -1,10 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import './index.css';
-import {userAdd} from '../../actions/user';
-import {inputError} from '../../actions/inputError';
+import {userAdd} from '../../../actions/user';
+import {inputError} from '../../../actions/inputError';
 import {withRouter} from 'react-router-dom';
-import {account} from '../../utils/accountsApi';
+import {account} from '../../../utils/accountsApi';
 
 class Authorization extends React.Component {
 

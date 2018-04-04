@@ -1,6 +1,19 @@
 import firebase from 'firebase';
 
 class Account {
+
+	initializeBd = () =>{
+		var config = {
+			apiKey: "AIzaSyBJqf0gLujy-LORi1oFG41JE040bx1F0RE",
+			authDomain: "veterinary-333.firebaseapp.com",
+			databaseURL: "https://veterinary-333.firebaseio.com",
+			projectId: "veterinary-333",
+			storageBucket: "veterinary-333.appspot.com",
+			messagingSenderId: "509184734732"
+		};
+		firebase.initializeApp(config);
+	}
+
 	createUser = (login,password,inf)=>{
 		return new Promise((resolve,reject)=>{
 			let user = null;
