@@ -17,22 +17,22 @@ class UserInformation extends React.Component {
         patronymic: patronymic.value
       };
     if (name.value.length === 0 || name.value.length > 10) {
-    this.props.inputError("nameNew");
+      this.props.inputError("nameNew");
       return;
     } else {
-    this.props.inputError("");
+      this.props.inputError("");
     }
     if (surname.value.length === 0 || surname.value.length > 10) {
       this.props.inputError("surnameNew");
       return;
     } else {
- this.props.inputError("");
+      this.props.inputError("");
     }
     if (patronymic.value.length === 0 || patronymic.value.length > 10) {
-     this.props.inputError("patronymicNew");
+      this.props.inputError("patronymicNew");
       return;
     } else {
-this.props.inputError("");
+      this.props.inputError("");
     }
     this.updateUserInformation(information);
   };
@@ -115,9 +115,24 @@ this.props.inputError("");
             <div className="file" />
           </div>
           <div className="changeInfUserInput">
-            <input className={this.props.input === 'nameNew' ? 'error' : ''} type="text" id="nameNew" placeholder="ИМЯ" />
-            <input className={this.props.input === 'surnameNew' ? 'error' : ''} type="text" id="surnameNew" placeholder="ФАМИЛИЯ" />
-            <input className={this.props.input === 'patronymicNew' ? 'error' : ''} type="text" id="patronymicNew" placeholder="ОТЧЕСТВО" />
+            <input
+              className={this.props.input === "nameNew" ? "error" : ""}
+              type="text"
+              id="nameNew"
+              placeholder="ИМЯ"
+            />
+            <input
+              className={this.props.input === "surnameNew" ? "error" : ""}
+              type="text"
+              id="surnameNew"
+              placeholder="ФАМИЛИЯ"
+            />
+            <input
+              className={this.props.input === "patronymicNew" ? "error" : ""}
+              type="text"
+              id="patronymicNew"
+              placeholder="ОТЧЕСТВО"
+            />
           </div>
         </div>
         <div className="button-block-task">
@@ -137,11 +152,11 @@ export default connect(
   state => ({
     id: state.contextMenu,
     user: state.user,
-	input:state.inputError
+    input: state.inputError
   }),
   {
     menuChange,
     userAdd,
-	inputError
+    inputError
   }
 )(UserInformation);
