@@ -2,7 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import './index.css';
 import {userAdd} from '../../actions/user';
-import { withRouter } from 'react-router-dom';
+import {inputError} from '../../actions/inputError';
+import {withRouter} from 'react-router-dom';
 import {account} from '../../utils/accountsApi';
 
 class Authorization extends React.Component {
@@ -11,29 +12,28 @@ class Authorization extends React.Component {
 		let login = document.querySelector('#loginIn'),
 			password = document.querySelector('#passwordIn');
 		if(login.value.length===0 || login.value.length>30) {		
-			login.className ='error';
+			this.props.inputError('login');
 			return;
 		} else {
-			login.className ='success';
+			this.props.inputError('');
 		}
 		if(password.value.length===0 || password.value.length>30|| password.value.length<8) {	
-			password.className ='error';
+			this.props.inputError('password');
 			return;
 		} else {
-			password.className ='success';
+			this.props.inputError('');
 		}
-		this.sigIn(login,password);
+		this.signIn(login,password);
 	}
 
-	sigIn = (login,password) =>{
-		account.sigIn(login,password)
+	signIn = (login,password) =>{
+		account.signIn(login,password)
 			.then((user)=>{	
 			this.props.userAdd(user);
 			this.props.history.push("/journal");
 		})
 			.catch(()=> {
-			login.className = 'error';
-			password.className = 'error';
+			this.props.inputError('login');
 		});
 
 	}
@@ -41,12 +41,18 @@ class Authorization extends React.Component {
 	render () {
 		return (
 			<div>
-				<input id='loginIn' placeholder='Логин' /><br/>
-				<input type='password' id='passwordIn' placeholder='Пароль' /><br/><br/>
+				<input id='loginIn'className={this.props.input === 'login' ? 'error' : ''} placeholder='Логин' /><br/>
+				<input type='password'className={this.props.input === 'password' ? 'error' : ''} id='passwordIn' placeholder='Пароль' /><br/><br/>
 				<button onClick={this.verification} color='teal'>Вход</button>
 			</div>
 		)
 	}
 }
 
-export default  withRouter(connect(undefined,{userAdd})(Authorization));
+export default withRouter(connect(
+	state=>({
+	input:state.inputError	
+	}),{
+		userAdd,
+		inputError
+	})(Authorization));

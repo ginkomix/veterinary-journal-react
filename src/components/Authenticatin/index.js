@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Main from '../Main';
-import { withRouter } from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import {account} from '../../utils/accountsApi';
 import {userAdd} from '../../actions/user';
 

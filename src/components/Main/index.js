@@ -72,7 +72,7 @@ class Main extends React.Component {
 
 	out = ()=>{
 		this.props.userAdd(null);
-		account.out()
+		account.signOut()
 			.then(()=>{
 			this.props.history.push("/");
 		});	

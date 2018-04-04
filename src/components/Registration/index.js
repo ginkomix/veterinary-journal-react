@@ -5,6 +5,7 @@ import {userAdd} from '../../actions/user';
 import { withRouter } from 'react-router-dom';
 import {choice} from '../../actions/startForm';
 import {account} from '../../utils/accountsApi';
+import {inputError} from '../../actions/inputError';
 
 class Registration extends React.Component {
 
@@ -31,40 +32,40 @@ class Registration extends React.Component {
 				patronymic:patronymic.value				
 			}
 		if(name.value.length===0 || name.value.length>10) {		
-			name.className ='error';
+			this.props.inputError('name');
 			return;
 		} else {
-			name.className ='success';
+			this.props.inputError('');
 		}
 		if(surname.value.length===0 || surname.value.length>10) {		
-			surname.className ='error';
+			this.props.inputError('surname');
 			return;
 		} else {
-			surname.className ='success';
+			this.props.inputError('');
 		}
 		if(patronymic.value.length===0 || patronymic.value.length>10) {		
-			patronymic.className ='error';
+			this.props.inputError('patronymic');
 			return;
 		} else {
-			patronymic.className ='success';
+			this.props.inputError('');
 		}
 		if(login.value.length===0 || login.value.length>30) {		
-			login.className ='error';
+			this.props.inputError('loginRegistration');
 			return;
 		} else {
-			login.className ='success';
+			this.props.inputError('');
 		}
 		if(password.value.length===0 || password.value.length>30 || password.value.length<8) {		
-			password.className ='error';
+			this.props.inputError('passwordRegistration');
 			return;
 		} else {
-			password.className ='success';
+			this.props.inputError('');
 		}
 		if(passwordTwo.value!==password.value) {
-			passwordTwo.className ='error';
+			this.props.inputError('passwordTwoRegistration');
 			return;
 		} else {
-			passwordTwo.className ='success';
+			this.props.inputError('');
 		}
 		this.regestration(login,password,inf);
 	}
@@ -72,16 +73,22 @@ class Registration extends React.Component {
 	render () {
 		return (
 			<div className='registration'>
-			<input id='name' placeholder='Имя' /><br/>
-			<input id='surname' placeholder='Фамилия' /><br/>
-			<input id='patronymic' placeholder='Отчество' /><br/>
-			<input id='login'placeholder='Почта' /><br/>
-			<input id='password'placeholder='Пароль' /><br/>
-			<input id='passwordTwo'placeholder='Пароль повторно' /><br/><br/>
+			<input className={this.props.input === 'name' ? 'error' : ''} id='name' placeholder='Имя' /><br/>
+			<input className={this.props.input === 'surname' ? 'error' : ''} id='surname' placeholder='Фамилия' /><br/>
+			<input className={this.props.input === 'patronymic' ? 'error' : ''} id='patronymic' placeholder='Отчество' /><br/>
+			<input className={this.props.input === 'loginRegistration' ? 'error' : ''} id='login'placeholder='Почта' /><br/>
+			<input className={this.props.input === 'passwordRegistration' ? 'error' : ''} id='password'placeholder='Пароль' /><br/>
+			<input className={this.props.input === 'passwordTwoRegistration' ? 'error' : ''} id='passwordTwo'placeholder='Пароль повторно' /><br/><br/>
 			<button onClick={this.verification} color='teal'>Зарегестрироваться</button>
 			</div>
 		)
 	}
 }
 
-export default  withRouter(connect(undefined,{userAdd,choice})(Registration));
+export default withRouter(connect(state=>({
+	input:state.inputError
+}),{
+	userAdd,
+	choice,
+	inputError
+	})(Registration));

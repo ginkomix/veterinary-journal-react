@@ -37,7 +37,7 @@ class Account {
 		})
 	}
 
-	sigIn = (login,password)=>{
+	signIn = (login,password)=>{
 		return new Promise((resolve,reject)=>{
 			firebase.auth().signInWithEmailAndPassword(login.value, password.value)
 				.then((user)=>{
@@ -76,7 +76,7 @@ class Account {
 		})
 	}
 
-	out = ()=>{
+	signOut = ()=>{
 		return new Promise((resolve)=>{
 			firebase.auth().signOut()
 				.then(()=>{

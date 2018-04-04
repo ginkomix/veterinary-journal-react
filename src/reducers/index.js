@@ -7,6 +7,7 @@ import startForm from './startForm';
 import menu from './menu';
 import { routeReducer } from 'react-router-redux';
 import user from './user';
+import inputError from './inputError';
 
 export default combineReducers({
     routing:routeReducer,
@@ -16,5 +17,6 @@ export default combineReducers({
 	contextMenu,
     startForm,
 	menu,
-	user
+	user,
+	inputError
 });
