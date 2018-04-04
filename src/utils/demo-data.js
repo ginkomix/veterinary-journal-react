@@ -4,7 +4,7 @@ export default [
     title: "Первая задача",
     description: "Some text",
     priority: 0,
-    date:  "2018-02-09",
+    date: "2018-02-09",
     done: false
   },
   {
