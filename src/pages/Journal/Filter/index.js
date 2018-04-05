@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { check, dataMax, dataMin, text } from "../../../actions/filter";
+import ReactDOM from "react-dom";
 import "./index.css";
 class Filter extends React.Component {
   changeForm = ev => {
@@ -21,8 +22,8 @@ class Filter extends React.Component {
   };
 
   dataFinde() {
-    let dataMin = document.querySelector("#dataMin").value,
-      dataMax = document.querySelector("#dataMax").value;
+    let dataMin = ReactDOM.findDOMNode(this.refs.dataMin).value,
+      dataMax = ReactDOM.findDOMNode(this.refs.dataMax).value;
     this.props.dataMax(dataMax);
     this.props.dataMin(dataMin);
   }
@@ -35,11 +36,11 @@ class Filter extends React.Component {
     return (
       <div className="filter">
         <form onChange={this.changeForm}>
-          <input id="searchText" placeholder="ПОИСК" type="text" />
+          <input ref="searchText" placeholder="ПОИСК" type="text" />
           <p>ДАТА ОТ</p>
-          <input id="dataMin" type="date" />
+          <input ref="dataMin" type="date" />
           <p>ДО</p>
-          <input id="dataMax" type="date" />
+          <input ref="dataMax" type="date" />
 
           <div className="side">
             <input

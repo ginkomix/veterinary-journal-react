@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import "./index.css";
+import ReactDOM from "react-dom";
 import { userAdd } from "../../../actions/user";
 import { withRouter } from "react-router-dom";
 import { choice } from "../../../actions/startForm";
@@ -21,12 +22,12 @@ class Registration extends React.Component {
   };
 
   verification = () => {
-    let name = document.querySelector("#name"),
-      surname = document.querySelector("#surname"),
-      patronymic = document.querySelector("#patronymic"),
-      login = document.querySelector("#login"),
-      password = document.querySelector("#password"),
-      passwordTwo = document.querySelector("#passwordTwo"),
+    let name = ReactDOM.findDOMNode(this.refs.name),
+      surname = ReactDOM.findDOMNode(this.refs.surname),
+      patronymic = ReactDOM.findDOMNode(this.refs.patronymic),
+      login = ReactDOM.findDOMNode(this.refs.login),
+      password =ReactDOM.findDOMNode(this.refs.password),
+      passwordTwo =ReactDOM.findDOMNode(this.refs.passwordTwo),
       information = {
         name: name.value,
         surname: surname.value,
@@ -80,31 +81,31 @@ class Registration extends React.Component {
       <div className="registration">
         <input
           className={this.props.input === "name" ? "error" : ""}
-          id="name"
+          ref="name"
           placeholder="Имя"
         />
         <br />
         <input
           className={this.props.input === "surname" ? "error" : ""}
-          id="surname"
+          ref="surname"
           placeholder="Фамилия"
         />
         <br />
         <input
           className={this.props.input === "patronymic" ? "error" : ""}
-          id="patronymic"
+          ref="patronymic"
           placeholder="Отчество"
         />
         <br />
         <input
           className={this.props.input === "loginRegistration" ? "error" : ""}
-          id="login"
+          ref="login"
           placeholder="Почта"
         />
         <br />
         <input
           className={this.props.input === "passwordRegistration" ? "error" : ""}
-          id="password"
+          ref="password"
           placeholder="Пароль"
         />
         <br />
@@ -112,7 +113,7 @@ class Registration extends React.Component {
           className={
             this.props.input === "passwordTwoRegistration" ? "error" : ""
           }
-          id="passwordTwo"
+          ref="passwordTwo"
           placeholder="Пароль повторно"
         />
         <br />

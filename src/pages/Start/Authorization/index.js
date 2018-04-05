@@ -5,11 +5,12 @@ import { userAdd } from "../../../actions/user";
 import { inputError } from "../../../actions/inputError";
 import { withRouter } from "react-router-dom";
 import { account } from "../../../utils/accountsApi";
+import ReactDOM from "react-dom";
 
 class Authorization extends React.Component {
   verification = () => {
-    let login = document.querySelector("#loginIn"),
-      password = document.querySelector("#passwordIn");
+    let login = ReactDOM.findDOMNode(this.refs.loginIn),
+      password = ReactDOM.findDOMNode(this.refs.passwordIn);
     if (login.value.length === 0 || login.value.length > 30) {
       this.props.inputError("login");
       return;
@@ -45,7 +46,7 @@ class Authorization extends React.Component {
     return (
       <div>
         <input
-          id="loginIn"
+          ref="loginIn"
           className={this.props.input === "login" ? "error" : ""}
           placeholder="Логин"
         />
@@ -53,7 +54,7 @@ class Authorization extends React.Component {
         <input
           type="password"
           className={this.props.input === "password" ? "error" : ""}
-          id="passwordIn"
+          ref="passwordIn"
           placeholder="Пароль"
         />
         <br />

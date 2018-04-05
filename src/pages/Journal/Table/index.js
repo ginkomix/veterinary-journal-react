@@ -51,16 +51,13 @@ class Table extends React.Component {
       return;
     }
     let id = Number(ev.target.classList[0]);
-    let item = document.querySelector(".active"),
-      flag = document.querySelector("#item" + id).classList.contains("active");
-    if (item) {
-      item.classList.remove("active");
-    }
-    if (!flag) {
+    
+    if ( this.props.id!==id) {
       this.props.changeItemID(id);
-      return;
-    }
-    this.props.changeItemID("");
+    } else {
+		this.props.changeItemID("");
+	}
+    
   };
 
   renderPriority(priority) {

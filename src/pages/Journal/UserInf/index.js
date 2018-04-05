@@ -4,13 +4,15 @@ import { menuChange } from "../../../actions/menu";
 import { userAdd } from "../../../actions/user";
 import { account } from "../../../utils/accountsApi";
 import { inputError } from "../../../actions/inputError";
+import { fileLoadSrc } from "../../../actions/fileLoadSrc";
+import ReactDOM from "react-dom";
 import "./index.css";
 
 class UserInformation extends React.Component {
   change = () => {
-    let name = document.querySelector("#nameNew"),
-      surname = document.querySelector("#surnameNew"),
-      patronymic = document.querySelector("#patronymicNew"),
+    let name = ReactDOM.findDOMNode(this.refs.nameNew),
+      surname = ReactDOM.findDOMNode(this.refs.surnameNew),
+      patronymic = ReactDOM.findDOMNode(this.refs.patronymicNew),
       information = {
         name: name.value,
         surname: surname.value,
@@ -35,10 +37,12 @@ class UserInformation extends React.Component {
       this.props.inputError("");
     }
     this.updateUserInformation(information);
+	   this.props.fileLoadSrc("");
   };
 
   closeMenu = () => {
     this.props.menuChange("");
+	  this.props.fileLoadSrc("");
   };
 
   updateUserInformation = information => {
@@ -48,89 +52,63 @@ class UserInformation extends React.Component {
     });
   };
 
-  dropFile = (event, htmlelement) => {
+  dropFile = (event) => {
     event.preventDefault();
-    let file = event.dataTransfer.files[0],
-      block = document.querySelector(".file");
+    let file = event.dataTransfer.files[0];
     if (!file.type.match("image.*") || !file) {
       return;
     }
 
-    htmlelement.classList.remove("hover");
-    block.innerHTML = "";
-
     let reader = new FileReader();
     reader.onload = (photo => {
       return e => {
-        let span = document.createElement("p");
-        document.querySelector(".avaUser").setAttribute("src", e.target.result);
-        span.innerHTML = [
-          '<img class="newImgAva" title="',
-          escape(photo.name),
-          '" src="',
-          e.target.result,
-          '" />'
-        ].join("");
-        block.insertBefore(span, null);
+		  this.props.fileLoadSrc(e.target.result);
         account.updatePhoto(photo, this.props.user);
       };
     })(file);
     reader.readAsDataURL(file);
-  };
-
-  dragover = (event, htmlelement) => {
-    event.preventDefault();
-    htmlelement.classList.add("hover");
-    document.querySelector(".inf-file").style.display = "none";
-    document.querySelector(".inf-put").style.display = "block";
-  };
-
-  dragleave = (event, htmlelement) => {
-    htmlelement.classList.remove("hover");
-    document.querySelector(".inf-file").style.display = "block";
-    document.querySelector(".inf-put").style.display = "none";
-  };
-
-  componentDidMount() {
-    let htmlelement = document.querySelector(".file");
-    htmlelement.addEventListener("dragover", event =>
-      this.dragover(event, htmlelement)
-    );
-    htmlelement.addEventListener("dragleave", event =>
-      this.dragleave(event, htmlelement)
-    );
-    htmlelement.addEventListener("drop", event =>
-      this.dropFile(event, htmlelement)
-    );
   }
+   preventDefault= (event)=> {
+    event.preventDefault();
+  }
+
+
+
+	renderAvaBlock =()=>{
+		return (
+			<div className="file-block">
+       <div className='img-block'>
+        {this.props.loadFile ? <img className="newImgAva" alt='ava' title="ava" src={this.props.loadFile} /> : null } 
+           </div>
+            <p className="inf-file">ПЕРЕТАЩИТЕ ФАЙЛ</p>
+            <div onDrop={this.dropFile} onDragOver={this.preventDefault} ref="file" className="file" />
+          </div>
+			)
+	}
 
   render() {
     return (
       <div className="addTask">
         <span>РЕДАКТИРОВАНИЕ ПРОФИЛЯ</span>
         <div className="changeInfUser">
-          <div className="file-block">
-            <p className="inf-file">ПЕРЕТАЩИТЕ ФАЙЛ</p>
-            <p className="inf-put">ОТПУСТЕ ДЛЯ ЗАГРУЗКИ</p>
-            <div className="file" />
-          </div>
+          {this.renderAvaBlock()}
           <div className="changeInfUserInput">
             <input
               className={this.props.input === "nameNew" ? "error" : ""}
               type="text"
-              id="nameNew"
+              ref="nameNew"
               placeholder="ИМЯ"
             />
             <input
               className={this.props.input === "surnameNew" ? "error" : ""}
               type="text"
-              id="surnameNew"
+              ref="surnameNew"
               placeholder="ФАМИЛИЯ"
             />
             <input
               className={this.props.input === "patronymicNew" ? "error" : ""}
               type="text"
-              id="patronymicNew"
+              ref="patronymicNew"
               placeholder="ОТЧЕСТВО"
             />
           </div>
@@ -152,11 +130,13 @@ export default connect(
   state => ({
     id: state.contextMenu,
     user: state.user,
-    input: state.inputError
+    input: state.inputError,
+	 loadFile : state.fileLoadSrc
   }),
   {
     menuChange,
     userAdd,
-    inputError
+    inputError,
+	  fileLoadSrc
   }
 )(UserInformation);

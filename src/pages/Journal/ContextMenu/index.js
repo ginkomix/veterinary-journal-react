@@ -4,15 +4,16 @@ import { changeItemID } from "../../../actions/contextMenu";
 import { del, change } from "../../../actions/item";
 import { connect } from "react-redux";
 import { menuChange } from "../../../actions/menu";
+import ReactDOM from "react-dom";
 
 class ContextMenu extends React.Component {
   change = () => {
     let item = {
       id: this.props.id,
-      title: document.querySelector("#titleChange").value,
-      priorety: document.querySelector("#prioretyChange").value,
-      data: document.querySelector("#dataChange").value,
-      description: document.querySelector("#descriptionChange").value
+      title: ReactDOM.findDOMNode(this.refs.titleChange).value,
+      priorety: ReactDOM.findDOMNode(this.refs.prioretyChange).value,
+      data: ReactDOM.findDOMNode(this.refs.dataChange).value,
+      description:ReactDOM.findDOMNode(this.refs.descriptionChange).value
     };
     this.props.change(item);
     this.closeMenu();
@@ -40,12 +41,12 @@ class ContextMenu extends React.Component {
           <div className="addTask">
             <div>
               <input
-                id="titleChange"
+                ref="titleChange"
                 defaultValue={this.props.item[key].title}
                 type="text"
               />
               <select
-                id="prioretyChange"
+                ref="prioretyChange"
                 defaultValue={this.props.item[key].priority}
               >
                 <option value="-1" disabled>
@@ -56,7 +57,7 @@ class ContextMenu extends React.Component {
                 <option value="2">Max</option>
               </select>
               <input
-                id="dataChange"
+                ref="dataChange"
                 defaultValue={this.props.item[key].date}
                 type="date"
               />
@@ -64,7 +65,7 @@ class ContextMenu extends React.Component {
             <div>
               <textarea
                 defaultValue={this.props.item[key].description}
-                id="descriptionChange"
+                ref="descriptionChange"
               />
             </div>
             <div className="button-block-task">

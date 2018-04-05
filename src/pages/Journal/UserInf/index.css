@@ -10,6 +10,15 @@
 	margin-top: 10px;
 	position: relative;
 }
+
+.img-block {
+	width: 270px;
+	height: 150px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 3;
+}
 .file {
 	border: 1px solid rgba(127, 127, 127,0.4);
 	width: 270px;

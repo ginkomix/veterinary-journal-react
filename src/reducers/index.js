@@ -8,6 +8,7 @@ import menu from "./menu";
 import { routeReducer } from "react-router-redux";
 import user from "./user";
 import inputError from "./inputError";
+import fileLoadSrc from './fileLoadSrc';
 
 export default combineReducers({
   routing: routeReducer,
@@ -18,5 +19,6 @@ export default combineReducers({
   startForm,
   menu,
   user,
-  inputError
+  inputError,
+fileLoadSrc
 });

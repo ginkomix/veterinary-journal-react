@@ -3,18 +3,19 @@ import { connect } from "react-redux";
 import { add } from "../../../actions/item";
 import "./index.css";
 import { menuChange } from "../../../actions/menu";
+import ReactDOM from "react-dom";
 class ToDoForm extends React.Component {
   addItem = () => {
     let item = {
-      title: document.querySelector("#title").value,
-      priorety: document.querySelector("#priorety").value,
-      data: document.querySelector("#data").value,
-      description: document.querySelector("#description").value
+      title: ReactDOM.findDOMNode(this.refs.title).value,
+      priorety: ReactDOM.findDOMNode(this.refs.priorety).value,
+      data: ReactDOM.findDOMNode(this.refs.data).value,
+      description: ReactDOM.findDOMNode(this.refs.description).value
     };
-    document.querySelector("#title").value = "";
-    document.querySelector("#priorety").value = -1;
-    document.querySelector("#data").value = "";
-    document.querySelector("#description").value = "";
+    ReactDOM.findDOMNode(this.refs.title).value = "";
+   ReactDOM.findDOMNode(this.refs.priorety).value = -1;
+   ReactDOM.findDOMNode(this.refs.data).value = "";
+   ReactDOM.findDOMNode(this.refs.description).value = "";
     this.props.add(item);
     this.closeMenu();
   };
@@ -26,8 +27,8 @@ class ToDoForm extends React.Component {
     return (
       <div className="addTask">
         <div>
-          <input size="mini" placeholder="ЗАГОЛОВОК" id="title" type="text" />
-          <select id="priorety" defaultValue="-1">
+          <input size="mini" placeholder="ЗАГОЛОВОК" ref="title" type="text" />
+          <select ref="priorety" defaultValue="-1">
             <option value="-1" disabled>
               Priority
             </option>
@@ -35,10 +36,10 @@ class ToDoForm extends React.Component {
             <option value="1">Mid</option>
             <option value="2">Max</option>
           </select>
-          <input size="mini" id="data" type="date" />
+          <input size="mini" ref="data" type="date" />
         </div>
         <div>
-          <textarea placeholder="ОПИСАНИЕ" id="description" />
+          <textarea placeholder="ОПИСАНИЕ" ref="description" />
         </div>
         <div className="button-block-task">
           <p className="buttonTask" onClick={this.addItem} id="add">
