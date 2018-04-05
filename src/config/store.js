@@ -1,6 +1,6 @@
 import { createStore,applyMiddleware  } from "redux";
 import reducer from "../reducers";
-import { dispath } from '../middleware/dispath'
+import { vanillaPromise  } from '../middleware/vanillaPromise '
 
-const store = createStore(reducer,applyMiddleware(dispath));
+const store = createStore(reducer,applyMiddleware(vanillaPromise ));
 export default store;
