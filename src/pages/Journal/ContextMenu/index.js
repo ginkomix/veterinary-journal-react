@@ -13,7 +13,7 @@ class ContextMenu extends React.Component {
       title: ReactDOM.findDOMNode(this.refs.titleChange).value,
       priorety: ReactDOM.findDOMNode(this.refs.prioretyChange).value,
       data: ReactDOM.findDOMNode(this.refs.dataChange).value,
-      description:ReactDOM.findDOMNode(this.refs.descriptionChange).value
+      description: ReactDOM.findDOMNode(this.refs.descriptionChange).value
     };
     this.props.change(item);
     this.closeMenu();

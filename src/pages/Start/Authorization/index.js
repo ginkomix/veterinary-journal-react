@@ -1,10 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import "./index.css";
-import { userAdd } from "../../../actions/user";
+import { signIn } from "../../../actions/user";
 import { inputError } from "../../../actions/inputError";
 import { withRouter } from "react-router-dom";
-import { account } from "../../../utils/accountsApi";
 import ReactDOM from "react-dom";
 
 class Authorization extends React.Component {
@@ -31,13 +30,13 @@ class Authorization extends React.Component {
   };
 
   signIn = (login, password) => {
-    account
+    this.props
       .signIn(login, password)
       .then(user => {
-        this.props.userAdd(user);
+		
         this.props.history.push("/journal");
       })
-      .catch(() => {
+      .catch((error) => {
         this.props.inputError("login");
       });
   };
@@ -73,7 +72,7 @@ export default withRouter(
       input: state.inputError
     }),
     {
-      userAdd,
+		signIn,
       inputError
     }
   )(Authorization)

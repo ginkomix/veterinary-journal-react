@@ -4,16 +4,14 @@ import Authorization from "./Authorization";
 import Registration from "./Registration";
 import { Icon } from "semantic-ui-react";
 import { choice } from "../../actions/startForm";
-import { userAdd } from "../../actions/user";
-import { account } from "../../utils/accountsApi";
+import { createUser,haveUser } from "../../actions/user";
 import "./index.css";
 
 class Start extends React.Component {
   componentWillMount() {
-    account
+    this.props
       .haveUser()
-      .then(user => {
-        this.props.userAdd(user);
+      .then(() => {
         this.props.history.push("/journal");
       })
       .catch(() => {
@@ -137,6 +135,7 @@ export default connect(
   }),
   {
     choice,
-    userAdd
+    createUser,
+	  haveUser
   }
 )(Start);

@@ -13,9 +13,9 @@ class ToDoForm extends React.Component {
       description: ReactDOM.findDOMNode(this.refs.description).value
     };
     ReactDOM.findDOMNode(this.refs.title).value = "";
-   ReactDOM.findDOMNode(this.refs.priorety).value = -1;
-   ReactDOM.findDOMNode(this.refs.data).value = "";
-   ReactDOM.findDOMNode(this.refs.description).value = "";
+    ReactDOM.findDOMNode(this.refs.priorety).value = -1;
+    ReactDOM.findDOMNode(this.refs.data).value = "";
+    ReactDOM.findDOMNode(this.refs.description).value = "";
     this.props.add(item);
     this.closeMenu();
   };

@@ -51,13 +51,12 @@ class Table extends React.Component {
       return;
     }
     let id = Number(ev.target.classList[0]);
-    
-    if ( this.props.id!==id) {
+
+    if (this.props.id !== id) {
       this.props.changeItemID(id);
     } else {
-		this.props.changeItemID("");
-	}
-    
+      this.props.changeItemID("");
+    }
   };
 
   renderPriority(priority) {

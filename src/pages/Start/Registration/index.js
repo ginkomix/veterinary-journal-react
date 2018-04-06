@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import "./index.css";
 import ReactDOM from "react-dom";
-import { userAdd } from "../../../actions/user";
+import { createUser } from "../../../actions/user";
 import { withRouter } from "react-router-dom";
 import { choice } from "../../../actions/startForm";
 import { account } from "../../../utils/accountsApi";
@@ -10,10 +10,9 @@ import { inputError } from "../../../actions/inputError";
 
 class Registration extends React.Component {
   regestration = (login, password, information) => {
-    account
+    this.props
       .createUser(login, password, information)
       .then(user => {
-        this.props.userAdd(user);
         this.props.history.push("/journal");
       })
       .catch(error => {
@@ -26,8 +25,8 @@ class Registration extends React.Component {
       surname = ReactDOM.findDOMNode(this.refs.surname),
       patronymic = ReactDOM.findDOMNode(this.refs.patronymic),
       login = ReactDOM.findDOMNode(this.refs.login),
-      password =ReactDOM.findDOMNode(this.refs.password),
-      passwordTwo =ReactDOM.findDOMNode(this.refs.passwordTwo),
+      password = ReactDOM.findDOMNode(this.refs.password),
+      passwordTwo = ReactDOM.findDOMNode(this.refs.passwordTwo),
       information = {
         name: name.value,
         surname: surname.value,
@@ -132,7 +131,7 @@ export default withRouter(
       input: state.inputError
     }),
     {
-      userAdd,
+      createUser,
       choice,
       inputError
     }

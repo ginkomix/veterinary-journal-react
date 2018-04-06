@@ -37,12 +37,12 @@ class UserInformation extends React.Component {
       this.props.inputError("");
     }
     this.updateUserInformation(information);
-	   this.props.fileLoadSrc("");
+    this.props.fileLoadSrc("");
   };
 
   closeMenu = () => {
     this.props.menuChange("");
-	  this.props.fileLoadSrc("");
+    this.props.fileLoadSrc("");
   };
 
   updateUserInformation = information => {
@@ -52,7 +52,7 @@ class UserInformation extends React.Component {
     });
   };
 
-  dropFile = (event) => {
+  dropFile = event => {
     event.preventDefault();
     let file = event.dataTransfer.files[0];
     if (!file.type.match("image.*") || !file) {
@@ -62,29 +62,39 @@ class UserInformation extends React.Component {
     let reader = new FileReader();
     reader.onload = (photo => {
       return e => {
-		  this.props.fileLoadSrc(e.target.result);
+        this.props.fileLoadSrc(e.target.result);
         account.updatePhoto(photo, this.props.user);
       };
     })(file);
     reader.readAsDataURL(file);
-  }
-   preventDefault= (event)=> {
+  };
+  preventDefault = event => {
     event.preventDefault();
-  }
+  };
 
-
-
-	renderAvaBlock =()=>{
-		return (
-			<div className="file-block">
-       <div className='img-block'>
-        {this.props.loadFile ? <img className="newImgAva" alt='ava' title="ava" src={this.props.loadFile} /> : null } 
-           </div>
-            <p className="inf-file">ПЕРЕТАЩИТЕ ФАЙЛ</p>
-            <div onDrop={this.dropFile} onDragOver={this.preventDefault} ref="file" className="file" />
-          </div>
-			)
-	}
+  renderAvaBlock = () => {
+    return (
+      <div className="file-block">
+        <div className="img-block">
+          {this.props.loadFile ? (
+            <img
+              className="newImgAva"
+              alt="ava"
+              title="ava"
+              src={this.props.loadFile}
+            />
+          ) : null}
+        </div>
+        <p className="inf-file">ПЕРЕТАЩИТЕ ФАЙЛ</p>
+        <div
+          onDrop={this.dropFile}
+          onDragOver={this.preventDefault}
+          ref="file"
+          className="file"
+        />
+      </div>
+    );
+  };
 
   render() {
     return (
@@ -131,12 +141,12 @@ export default connect(
     id: state.contextMenu,
     user: state.user,
     input: state.inputError,
-	 loadFile : state.fileLoadSrc
+    loadFile: state.fileLoadSrc
   }),
   {
     menuChange,
     userAdd,
     inputError,
-	  fileLoadSrc
+    fileLoadSrc
   }
 )(UserInformation);

@@ -54,6 +54,7 @@ class Account {
 
   signIn = (login, password) => {
     return new Promise((resolve, reject) => {
+		console.log(login, password)
       firebase
         .auth()
         .signInWithEmailAndPassword(login.value, password.value)

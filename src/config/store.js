@@ -1,6 +1,6 @@
-import { createStore,applyMiddleware  } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import reducer from "../reducers";
-import { vanillaPromise  } from '../middleware/vanillaPromise '
+import thunk from 'redux-thunk';
 
-const store = createStore(reducer,applyMiddleware(vanillaPromise ));
+const store = createStore(reducer, applyMiddleware(thunk));
 export default store;

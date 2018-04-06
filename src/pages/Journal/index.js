@@ -15,7 +15,6 @@ import { withRouter } from "react-router-dom";
 import Blockout from "./Blockout";
 import { account } from "../../utils/accountsApi";
 
-
 class Journal extends React.Component {
   renderUserProfile = () => {
     if (this.props.user) {
