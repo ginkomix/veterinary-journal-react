@@ -8,19 +8,17 @@ import ReactDOM from "react-dom";
 
 class Authorization extends React.Component {
   verification = () => {
-    let login = ReactDOM.findDOMNode(this.refs.loginIn),
-      password = ReactDOM.findDOMNode(this.refs.passwordIn);
-    if (login.value.length === 0 || login.value.length > 30) {
+    //   let login = ReactDOM.findDOMNode(this.refs.loginIn),
+    //     password = ReactDOM.findDOMNode(this.refs.passwordIn);
+    let login = this.refs.loginIn.value;
+    let password = this.refs.passwordIn.value;
+    if (login.length === 0 || login.length > 30) {
       this.props.inputError("login");
       return;
     } else {
       this.props.inputError("");
     }
-    if (
-      password.value.length === 0 ||
-      password.value.length > 30 ||
-      password.value.length < 8
-    ) {
+    if (password.length === 0 || password.length > 30 || password.length < 8) {
       this.props.inputError("password");
       return;
     } else {
@@ -33,10 +31,9 @@ class Authorization extends React.Component {
     this.props
       .signIn(login, password)
       .then(user => {
-		
         this.props.history.push("/journal");
       })
-      .catch((error) => {
+      .catch(error => {
         this.props.inputError("login");
       });
   };
@@ -72,7 +69,7 @@ export default withRouter(
       input: state.inputError
     }),
     {
-		signIn,
+      signIn,
       inputError
     }
   )(Authorization)
