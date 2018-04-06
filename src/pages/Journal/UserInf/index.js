@@ -1,36 +1,35 @@
 import React from "react";
 import { connect } from "react-redux";
 import { menuChange } from "../../../actions/menu";
-import { userAdd } from "../../../actions/user";
-import { account } from "../../../utils/accountsApi";
+import { updateInformation,updatePhoto } from "../../../actions/user";
 import { inputError } from "../../../actions/inputError";
 import { fileLoadSrc } from "../../../actions/fileLoadSrc";
-import ReactDOM from "react-dom";
+
 import "./index.css";
 
 class UserInformation extends React.Component {
   change = () => {
-    let name = ReactDOM.findDOMNode(this.refs.nameNew),
-      surname = ReactDOM.findDOMNode(this.refs.surnameNew),
-      patronymic = ReactDOM.findDOMNode(this.refs.patronymicNew),
+    let name = this.refs.nameNew.value,
+      surname = this.refs.surnameNew.value,
+      patronymic = this.refs.patronymicNew.value,
       information = {
-        name: name.value,
-        surname: surname.value,
-        patronymic: patronymic.value
+        name: name,
+        surname: surname,
+        patronymic: patronymic
       };
-    if (name.value.length === 0 || name.value.length > 10) {
+    if (name.length === 0 || name.length > 10) {
       this.props.inputError("nameNew");
       return;
     } else {
       this.props.inputError("");
     }
-    if (surname.value.length === 0 || surname.value.length > 10) {
+    if (surname.length === 0 || surname.length > 10) {
       this.props.inputError("surnameNew");
       return;
     } else {
       this.props.inputError("");
     }
-    if (patronymic.value.length === 0 || patronymic.value.length > 10) {
+    if (patronymic.length === 0 || patronymic.length > 10) {
       this.props.inputError("patronymicNew");
       return;
     } else {
@@ -46,8 +45,7 @@ class UserInformation extends React.Component {
   };
 
   updateUserInformation = information => {
-    account.updateInformation(information).then(user => {
-      this.props.userAdd(user);
+    this.props.updateInformation(information).then(user => {
       this.closeMenu();
     });
   };
@@ -63,7 +61,7 @@ class UserInformation extends React.Component {
     reader.onload = (photo => {
       return e => {
         this.props.fileLoadSrc(e.target.result);
-        account.updatePhoto(photo, this.props.user);
+        this.props.updatePhoto(photo, this.props.user);
       };
     })(file);
     reader.readAsDataURL(file);
@@ -145,8 +143,9 @@ export default connect(
   }),
   {
     menuChange,
-    userAdd,
+    updateInformation,
     inputError,
-    fileLoadSrc
+    fileLoadSrc,
+	  updatePhoto
   }
 )(UserInformation);

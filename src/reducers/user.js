@@ -14,7 +14,6 @@ export default (store = DEFAULT_USER, action) => {
     case CREATE_USER:
       return action.payload;
     case SIGN_IN:
-		  console.log(action.payload);
       return action.payload;
     case UPDATE_INFORMATION:
       return action.payload;

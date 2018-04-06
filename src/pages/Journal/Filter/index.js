@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { check, dataMax, dataMin, text } from "../../../actions/filter";
-import ReactDOM from "react-dom";
 import "./index.css";
+
 class Filter extends React.Component {
   changeForm = ev => {
     let target = ev.target;
@@ -22,8 +22,8 @@ class Filter extends React.Component {
   };
 
   dataFinde() {
-    let dataMin = ReactDOM.findDOMNode(this.refs.dataMin).value,
-      dataMax = ReactDOM.findDOMNode(this.refs.dataMax).value;
+    let dataMin = this.refs.dataMin.value,
+      dataMax = this.refs.dataMax.value;
     this.props.dataMax(dataMax);
     this.props.dataMin(dataMin);
   }

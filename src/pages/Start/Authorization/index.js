@@ -4,12 +4,9 @@ import "./index.css";
 import { signIn } from "../../../actions/user";
 import { inputError } from "../../../actions/inputError";
 import { withRouter } from "react-router-dom";
-import ReactDOM from "react-dom";
 
 class Authorization extends React.Component {
   verification = () => {
-    //   let login = ReactDOM.findDOMNode(this.refs.loginIn),
-    //     password = ReactDOM.findDOMNode(this.refs.passwordIn);
     let login = this.refs.loginIn.value;
     let password = this.refs.passwordIn.value;
     if (login.length === 0 || login.length > 30) {

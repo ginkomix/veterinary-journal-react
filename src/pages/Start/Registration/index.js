@@ -1,11 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import "./index.css";
-import ReactDOM from "react-dom";
 import { createUser } from "../../../actions/user";
 import { withRouter } from "react-router-dom";
 import { choice } from "../../../actions/startForm";
-import { account } from "../../../utils/accountsApi";
 import { inputError } from "../../../actions/inputError";
 
 class Registration extends React.Component {
@@ -21,52 +19,52 @@ class Registration extends React.Component {
   };
 
   verification = () => {
-    let name = ReactDOM.findDOMNode(this.refs.name),
-      surname = ReactDOM.findDOMNode(this.refs.surname),
-      patronymic = ReactDOM.findDOMNode(this.refs.patronymic),
-      login = ReactDOM.findDOMNode(this.refs.login),
-      password = ReactDOM.findDOMNode(this.refs.password),
-      passwordTwo = ReactDOM.findDOMNode(this.refs.passwordTwo),
+    let name = this.refs.name.value,
+      surname = this.refs.surname.value,
+      patronymic = this.refs.patronymic.value,
+      login = this.refs.login.value,
+      password = this.refs.password.value,
+      passwordTwo = this.refs.passwordTwo.value,
       information = {
-        name: name.value,
-        surname: surname.value,
-        patronymic: patronymic.value
+        name: name,
+        surname: surname,
+        patronymic: patronymic
       };
-    if (name.value.length === 0 || name.value.length > 10) {
+    if (name.length === 0 || name.length > 10) {
       this.props.inputError("name");
       return;
     } else {
       this.props.inputError("");
     }
-    if (surname.value.length === 0 || surname.value.length > 10) {
+    if (surname.length === 0 || surname.length > 10) {
       this.props.inputError("surname");
       return;
     } else {
       this.props.inputError("");
     }
-    if (patronymic.value.length === 0 || patronymic.value.length > 10) {
+    if (patronymic.length === 0 || patronymic.length > 10) {
       this.props.inputError("patronymic");
       return;
     } else {
       this.props.inputError("");
     }
-    if (login.value.length === 0 || login.value.length > 30) {
+    if (login.length === 0 || login.length > 30) {
       this.props.inputError("loginRegistration");
       return;
     } else {
       this.props.inputError("");
     }
     if (
-      password.value.length === 0 ||
-      password.value.length > 30 ||
-      password.value.length < 8
+      password.length === 0 ||
+      password.length > 30 ||
+      password.length < 8
     ) {
       this.props.inputError("passwordRegistration");
       return;
     } else {
       this.props.inputError("");
     }
-    if (passwordTwo.value !== password.value) {
+    if (passwordTwo !== password) {
       this.props.inputError("passwordTwoRegistration");
       return;
     } else {

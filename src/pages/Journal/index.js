@@ -9,11 +9,10 @@ import UserInf from "./UserInf";
 import "./index.css";
 import ava from "../../images/ava.png";
 import { Icon } from "semantic-ui-react";
-import { userAdd } from "../../actions/user";
+import { signOut } from "../../actions/user";
 import { menuChange } from "../../actions/menu";
 import { withRouter } from "react-router-dom";
 import Blockout from "./Blockout";
-import { account } from "../../utils/accountsApi";
 
 class Journal extends React.Component {
   renderUserProfile = () => {
@@ -80,8 +79,7 @@ class Journal extends React.Component {
   };
 
   out = () => {
-    this.props.userAdd(null);
-    account.signOut().then(() => {
+    this.props.signOut().then(() => {
       this.props.history.push("/");
     });
   };
@@ -144,6 +142,6 @@ export default withRouter(
       menu: state.menu,
       id: state.contextMenu
     }),
-    { userAdd, menuChange }
+    { signOut, menuChange }
   )(Journal)
 );

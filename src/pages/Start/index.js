@@ -4,7 +4,7 @@ import Authorization from "./Authorization";
 import Registration from "./Registration";
 import { Icon } from "semantic-ui-react";
 import { choice } from "../../actions/startForm";
-import { createUser,haveUser } from "../../actions/user";
+import { createUser, haveUser } from "../../actions/user";
 import "./index.css";
 
 class Start extends React.Component {
@@ -136,6 +136,6 @@ export default connect(
   {
     choice,
     createUser,
-	  haveUser
+    haveUser
   }
 )(Start);

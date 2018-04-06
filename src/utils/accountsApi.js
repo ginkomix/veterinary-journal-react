@@ -18,7 +18,7 @@ class Account {
       let user = null;
       firebase
         .auth()
-        .createUserWithEmailAndPassword(login.value, password.value)
+        .createUserWithEmailAndPassword(login, password)
         .then(() => {
           user = firebase.auth().currentUser;
           user.sendEmailVerification();
@@ -33,7 +33,7 @@ class Account {
               resolve(user);
             });
         })
-        .catch(error => {
+        .catch(() => {
           reject();
         });
     });
@@ -53,23 +53,12 @@ class Account {
   };
 
   signIn = (login, password) => {
-    // return new Promise((resolve, reject) => {
-    //   console.log(login, password);
-    //   firebase
-    //     .auth()
-    //     .signInWithEmailAndPassword(login, password)
-    //     .then(user => {
-    //       resolve(user);
-    //     })
-    //     .catch(() => {
-    //       reject();
-    //     });
-    // });
     return firebase.auth().signInWithEmailAndPassword(login, password);
   };
 
   updateInformation = inf => {
     return new Promise(resolve => {
+		
       let user = firebase.auth().currentUser;
       user
         .updateProfile({
@@ -104,14 +93,7 @@ class Account {
   };
 
   signOut = () => {
-    return new Promise(resolve => {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          resolve();
-        });
-    });
+    return firebase.auth().signOut();
   };
 }
 

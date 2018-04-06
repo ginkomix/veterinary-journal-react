@@ -4,16 +4,15 @@ import { changeItemID } from "../../../actions/contextMenu";
 import { del, change } from "../../../actions/item";
 import { connect } from "react-redux";
 import { menuChange } from "../../../actions/menu";
-import ReactDOM from "react-dom";
 
 class ContextMenu extends React.Component {
   change = () => {
     let item = {
       id: this.props.id,
-      title: ReactDOM.findDOMNode(this.refs.titleChange).value,
-      priorety: ReactDOM.findDOMNode(this.refs.prioretyChange).value,
-      data: ReactDOM.findDOMNode(this.refs.dataChange).value,
-      description: ReactDOM.findDOMNode(this.refs.descriptionChange).value
+      title: this.refs.titleChange.value,
+      priorety: this.refs.prioretyChange.value,
+      data: this.refs.dataChange.value,
+      description: this.refs.descriptionChange.value
     };
     this.props.change(item);
     this.closeMenu();

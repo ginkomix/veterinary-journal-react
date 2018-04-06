@@ -2,19 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import Main from "../../pages/Journal";
 import { withRouter } from "react-router-dom";
-import { account } from "../../utils/accountsApi";
-import { userAdd } from "../../actions/user";
+import { haveUser } from "../../actions/user";
 
 class Authentication extends React.Component {
   componentWillMount() {
-    account
-      .haveUser()
-      .then(user => {
-        this.props.userAdd(user);
-      })
-      .catch(() => {
-        this.props.history.push("/");
-      });
+    this.props.haveUser().catch(() => {
+      this.props.history.push("/");
+    });
   }
 
   render() {
@@ -27,6 +21,6 @@ export default withRouter(
     state => ({
       user: state.user
     }),
-    { userAdd }
+    { haveUser }
   )(Authentication)
 );
