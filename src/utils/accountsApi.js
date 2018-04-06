@@ -53,18 +53,19 @@ class Account {
   };
 
   signIn = (login, password) => {
-    return new Promise((resolve, reject) => {
-		console.log(login, password)
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(login.value, password.value)
-        .then(user => {
-          resolve(user);
-        })
-        .catch(() => {
-          reject();
-        });
-    });
+    // return new Promise((resolve, reject) => {
+    //   console.log(login, password);
+    //   firebase
+    //     .auth()
+    //     .signInWithEmailAndPassword(login, password)
+    //     .then(user => {
+    //       resolve(user);
+    //     })
+    //     .catch(() => {
+    //       reject();
+    //     });
+    // });
+    return firebase.auth().signInWithEmailAndPassword(login, password);
   };
 
   updateInformation = inf => {

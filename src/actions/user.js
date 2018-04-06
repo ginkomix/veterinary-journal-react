@@ -11,24 +11,20 @@ export const userAdd = (login, password, inf) => ({
   payload: account.createUser(login, password, inf)
 });
 
-
-
-
-export const signIn = dispatch => (login, password) =>
+export const signIn = (login, password) => dispatch =>
   account
     .signIn(login, password)
-    .then((user) => dispatch({ type: SIGN_IN, payload: user }));
+    .then(user => dispatch({ type: SIGN_IN, payload: user }));
 
 export const createUser = dispatch => (login, password, inf) =>
   account
     .createUser(login, password, inf)
-    .then((user) => dispatch({ type: CREATE_USER, payload: user }));
+    .then(user => dispatch({ type: CREATE_USER, payload: user }));
 
 export const haveUser = dispatch => () =>
-  account.haveUser()
-    .then((user) => dispatch({ type: HAVE_USER, payload: {user} }));
-
-
+  account
+    .haveUser()
+    .then(user => dispatch({ type: HAVE_USER, payload: { user } }));
 
 export const updateInformation = inf => ({
   type: UPDATE_INFORMATION,
