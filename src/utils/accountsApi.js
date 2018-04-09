@@ -58,7 +58,6 @@ class Account {
 
   updateInformation = inf => {
     return new Promise(resolve => {
-		
       let user = firebase.auth().currentUser;
       user
         .updateProfile({

@@ -14,9 +14,7 @@ class Table extends React.Component {
   sortByTitle = ["id", "title", "description", "priority", "date", "done"];
 
   componentWillMount() {
-    api.getItems().then(state => {
-      this.props.defaultItem(state);
-    });
+    this.props.defaultItem();
   }
 
   renderTitel() {

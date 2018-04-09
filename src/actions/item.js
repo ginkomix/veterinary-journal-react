@@ -1,3 +1,4 @@
+import { api } from "../utils/api";
 export const ADD = "add";
 export const DEL = "del";
 export const CHANGE_DONE = "changeDone";
@@ -19,10 +20,10 @@ export const del = payload => ({
   id: payload
 });
 
-export const defaultItem = payload => ({
-  type: ADD_DEFAULT_ITEM,
-  items: payload
-});
+export const defaultItem = () => dispatch =>
+  api
+    .getItems()
+    .then(item => dispatch({ type: ADD_DEFAULT_ITEM, payload: item }));
 
 export const changeDone = payload => ({
   type: CHANGE_DONE,

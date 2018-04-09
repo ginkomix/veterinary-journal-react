@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { menuChange } from "../../../actions/menu";
-import { updateInformation,updatePhoto } from "../../../actions/user";
+import { updateInformation, updatePhoto } from "../../../actions/user";
 import { inputError } from "../../../actions/inputError";
 import { fileLoadSrc } from "../../../actions/fileLoadSrc";
 
@@ -146,6 +146,6 @@ export default connect(
     updateInformation,
     inputError,
     fileLoadSrc,
-	  updatePhoto
+    updatePhoto
   }
 )(UserInformation);

@@ -11,7 +11,7 @@ const DEFAULT_ITEM = null;
 export default (state = DEFAULT_ITEM, action) => {
   switch (action.type) {
     case ADD_DEFAULT_ITEM:
-      return [...action.items];
+      return [...action.payload];
 
     case ADD:
       return [...state, api.addItem(state, action.item)];

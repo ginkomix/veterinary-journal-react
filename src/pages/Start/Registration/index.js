@@ -54,11 +54,7 @@ class Registration extends React.Component {
     } else {
       this.props.inputError("");
     }
-    if (
-      password.length === 0 ||
-      password.length > 30 ||
-      password.length < 8
-    ) {
+    if (password.length === 0 || password.length > 30 || password.length < 8) {
       this.props.inputError("passwordRegistration");
       return;
     } else {
